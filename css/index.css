@@ -1,0 +1,104 @@
+body {
+	background-color: #1ea468;
+	font-family: Helvetica;
+}
+
+
+#scontainer {
+	width: 400px;
+	height: 500px;
+	padding: 20px;
+	text-align: left;
+	font-size: 30px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,1);
+	text-align: center;
+}
+
+#container {
+	background-color: #0c9256;
+	width: 400px;
+	height: 500px;
+	font-size: 30px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,1);
+}
+
+#head {
+	height: 50px;
+	line-height: 50px;
+	display: table;
+	width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+#head > a {
+	text-decoration: none;
+	text-align: center;
+	display: table-cell;
+	padding: 10px;
+	width: 50%;
+	color: white;
+}
+
+#head > a:first-child{
+	background-color: #1ea468;
+}
+
+#body {
+	display: none;
+}
+
+#login > input[type=text],
+#register > input[type=text],
+#login > input[type=password],
+#register > input[type=password] {
+	box-sizing: border-box;
+	display: block;
+	font-size: 20px;
+	padding: 10px;
+	border: 2px solid #ccc;
+	background-color: white;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+#login > input[type=button],
+#register > input[type=button] {
+	margin: auto;
+	text-align: center;
+	font-size: 20px;
+	padding: 10px;
+	border: 2px solid #ccc;
+}
+
+
+.centered {
+	text-align: center;
+	margin: auto;
+	float: none;
+	clear: both;
+}
+
+.rounded {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.roundedtop {
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.roundedbottom {
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}

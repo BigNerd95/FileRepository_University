@@ -1,0 +1,91 @@
+body {
+	cursor: url(../img/cursor.png), auto;
+}
+
+.paragrafo {
+	display: block;
+	width: 90%;
+	margin: auto auto 50px auto;
+	float: none;
+	clear: both;
+}
+
+.centered {
+	text-align: center;
+	margin: auto;
+	float: none;
+	clear: both;
+}
+
+.rounded {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#topbar {
+	display: flex;
+	height: 52px;
+	margin-top: 20px;
+	min-width: 700px;
+}
+
+#topbar > div {
+	margin: 0 auto;
+	box-shadow: 0px 0px 10px rgba(0,0,0,1);
+}
+
+#topbar a {
+	display: inline-block;
+	width: 100px;
+	height: 52px;
+	line-height: 52px;
+	margin: auto;
+	float: left;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	font-family: Helvetica;
+	background-color: #1e6468;
+	text-decoration: none;
+	box-shadow: 0px 0px 10px #133e40;
+}
+
+#topbar a:hover {
+	box-shadow: 0px 0px 30px #133e40;
+}
+
+#topbar a:active {
+	box-shadow: inset 0 5px 10px #133e40;
+}
+
+#topbar a:first-child {
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+#topbar a:last-child {
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#wrapper {
+	width: 80%;
+	min-width: 700px;
+	padding: 5px;
+	margin: 20px auto 40px auto;
+	text-align: left;
+	box-shadow: 0px 0px 10px rgba(0,0,0,1);
+}
+
+#footer p {
+	display: inline-block;
+}

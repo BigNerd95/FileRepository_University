@@ -1,0 +1,60 @@
+body {
+  background: url(../img/back.png) repeat fixed;
+}
+
+a {
+  color: #A4A400;
+}
+
+ul {
+  list-style-image: url(../img/circle.png);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #A4A400;
+  background-color: #F0F0F0;
+  font-family: "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+  font-size: 18pt;
+  text-decoration: underline;
+  letter-spacing: 0.25em;
+  display: inline-flex;
+  float: left;
+}
+
+.paragrafo * {
+	clear: both;
+}
+
+#topbar a {
+	background-color: #1e64be;
+}
+
+#wrapper {
+	color: #404040;
+	font-size: 11pt;
+	font-family: Georgia, Garamond, serif;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#wrapper hr {
+  width: 90%;
+  border: solid 1px rgba(0,0,255,0.5);
+}
+
+#title h1 {
+  font-size: 22pt;
+  font-weight: bold;
+  float: none;
+}
+
+#dati p {
+	clear: both;
+  float: left;
+}
+
+#dati img {
+  float: right;
+  clear: none;
+  width: 240px;
+  height: 240px;
+}

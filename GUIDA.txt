@@ -1,5 +1,10 @@
-create database repository;
-use repository;
-CREATE TABLE users (id INTEGER NOT NULL AUTO_INCREMENT, username VARCHAR(30) UNIQUE NOT NULL, password VARCHAR(30) NOT NULL, PRIMARY KEY (id));
+forzaunito
+
+- create database repository;
+- use repository;
+- CREATE TABLE users (id INTEGER NOT NULL AUTO_INCREMENT, username VARCHAR(30) UNIQUE NOT NULL, password VARCHAR(30) NOT NULL, PRIMARY KEY (id));
+- select * from users;
 
 la cartella repository deve avere permessi 777
+
+# cambiare permessi cartelle interne

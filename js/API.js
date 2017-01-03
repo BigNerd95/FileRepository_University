@@ -8,11 +8,13 @@ var FILE_FUNCTIONS = 'API/file/';
 
 
 // init function runned when page is loaded
+/*
 document.observe("dom:loaded", function(){
     checkStatus();
     bindEvents();
     console.log(LOG_INFO, 'Init done');
 });
+*/
 
 function ajaxFailure(){
     console.log("Errore ajax");
@@ -44,7 +46,7 @@ function showPage(result){
 }
 
 // attach events callback to page elements
-function bindEvents(){
+function bindEventsXXX(){
     // puzzlearea's cell click events
     /*
     Event.on(document, 'click', '#puzzlearea > div', function(event, cell){

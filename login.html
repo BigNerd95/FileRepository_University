@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Consulting</title>
+		<title>FileRepository - Login</title>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/login.css">
+		<script src="js/prototype.js" type="text/javascript"></script>
+		<script src="js/scriptaculous/scriptaculous.js" type="text/javascript"></script>
+		<script src="js/API.js" type="text/javascript"></script>
+		<script src="js/login.js" type="text/javascript"></script>
 	</head>
 	<body>
 
@@ -13,28 +17,28 @@
 
 		<div id="container" class="rounded centered">
 
-			<div id="head" class="roundedtop">
-				<a href="#login">Login</a>
-				<a href="#register">Register</a>
-			</head>
+			<div id="chead" class="roundedtop">
+				<a id="loginbtn">Login</a>
+				<a id="registerbtn">Register</a>
+			</div>
 
-			<div id="body">
+			<div id="cbody">
 				<div id="login">
-					<input type="text" placeholder="Username" class="rounded" name="username" required>
+					<input type="text" placeholder="Username" class="rounded" id="loginuser" required>
 
-					<input type="password" placeholder="Password" class="rounded" name="password" required>
+					<input type="password" placeholder="Password" class="rounded" id="loginpass" required>
 
-					<input type="button" value="Login">
+					<input type="button" id="loginsbmt" value="Login">
 				</div>
 
 				<div id="register" >
-					<input type="text" placeholder="Username" class="rounded" name="username" required>
+					<input type="text" placeholder="Username" class="rounded" name="registeruser" required>
 
-					<input type="password" placeholder="Password" class="rounded" name="password" required>
+					<input type="password" placeholder="Password" class="rounded" name="registerpass" required>
 
-					<input type="password" placeholder="Retype password" class="rounded" name="password" required>
+					<input type="password" placeholder="Retype password" class="rounded" name="registerpass2" required>
 
-					<input type="button" value="Login">
+					<input type="button" id="registersbmt" value="Register">
 				</div>
 			</div>
 
@@ -42,9 +46,9 @@
 
 
 
-		<div id="footer">
+		<!--div id="footer">
 			<h1>File Repository</h1>
-		</div>
+		</div-->
 
 	</body>
 </html>

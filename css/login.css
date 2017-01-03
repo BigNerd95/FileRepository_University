@@ -4,25 +4,15 @@ body {
 }
 
 
-#scontainer {
-	width: 400px;
-	height: 500px;
-	padding: 20px;
-	text-align: left;
-	font-size: 30px;
-	box-shadow: 0px 0px 10px rgba(0,0,0,1);
-	text-align: center;
-}
-
 #container {
 	background-color: #0c9256;
 	width: 400px;
-	height: 500px;
 	font-size: 30px;
 	box-shadow: 0px 0px 10px rgba(0,0,0,1);
+	transition: height 2s;
 }
 
-#head {
+#chead {
 	height: 50px;
 	line-height: 50px;
 	display: table;
@@ -31,21 +21,29 @@ body {
 	overflow: hidden;
 }
 
-#head > a {
+#chead > a {
 	text-decoration: none;
 	text-align: center;
 	display: table-cell;
 	padding: 10px;
 	width: 50%;
 	color: white;
-}
-
-#head > a:first-child{
 	background-color: #1ea468;
 }
 
-#body {
-	display: none;
+#chead > a:hover {
+	cursor: pointer;
+}
+
+#cbody{
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.selected {
+	background-color: #0c9256 !important;
 }
 
 #login > input[type=text],
@@ -70,7 +68,6 @@ body {
 	padding: 10px;
 	border: 2px solid #ccc;
 }
-
 
 .centered {
 	text-align: center;

@@ -25,6 +25,8 @@
 			delUser($userid);
 			json_response(CL_REGISTRATION_FAILED);
 		}
+
+		login($userid, $username);
 	}
 
 

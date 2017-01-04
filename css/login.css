@@ -1,6 +1,19 @@
 body {
 	background-color: #1ea468;
 	font-family: Helvetica;
+	margin:0;
+   	padding:0;
+}
+
+#header {
+	text-align: center;
+	color: white;
+	font-size: 40px;
+}
+
+#footer {
+	text-align: center;
+	margin-top: 50px;
 }
 
 
@@ -9,7 +22,6 @@ body {
 	width: 400px;
 	font-size: 30px;
 	box-shadow: 0px 0px 10px rgba(0,0,0,1);
-	transition: height 2s;
 }
 
 #chead {
@@ -46,6 +58,11 @@ body {
 	background-color: #0c9256 !important;
 }
 
+.errorField {
+	color: red;
+	border: 2px solid red !important;
+}
+
 #login > input[type=text],
 #register > input[type=text],
 #login > input[type=password],
@@ -58,15 +75,36 @@ body {
 	background-color: white;
 	width: 100%;
 	margin-bottom: 30px;
+	outline: none;
 }
 
-#login > input[type=button],
-#register > input[type=button] {
+#login > input[type=text]:focus,
+#register > input[type=text]:focus,
+#login > input[type=password]:focus,
+#register > input[type=password]:focus{
+	border: 2px solid #999;
+}
+
+#login > input[type=submit],
+#register > input[type=submit] {
 	margin: auto;
 	text-align: center;
 	font-size: 20px;
 	padding: 10px;
 	border: 2px solid #ccc;
+	background-color: #1ea468;
+	outline: none;
+}
+
+#login > input[type=submit]:hover,
+#register > input[type=submit]:hover {
+	cursor: pointer;
+}
+
+#login > input[type=submit]:active,
+#register > input[type=submit]:active {
+	background-color: #0c9256;
+	color: white;
 }
 
 .centered {

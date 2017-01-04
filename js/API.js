@@ -6,6 +6,19 @@ var LOG_DEBUG = '[DEBUG]:';
 var USER_FUNCTIONS = 'API/user/';
 var FILE_FUNCTIONS = 'API/file/';
 
+const CL_ALREADY_LOGGEDIN = -2;
+const CL_NOT_LOGGEDIN = -1;
+
+const CL_NO_ERROR = 0;
+
+// API errors
+const CL_MISSING_PARAMETER = 1;
+const CL_WRONG_CREDENTIALS = 2;
+const CL_USER_ALREADY_EXISTS = 3;
+const CL_REGISTRATION_FAILED = 4;
+const CL_FAILED_ACTION = 5;
+const CL_UNKNOWN_ACTION = 6;
+
 
 // init function runned when page is loaded
 /*
@@ -28,8 +41,8 @@ function sendAjax(url, callback, params={}){
             console.log(LOG_DEBUG, response.responseJSON);
             callback(response.responseJSON);
         },
-        onFailure: ajaxFailure,
-        onException: ajaxFailure
+        onFailure: ajaxFailure//,
+        //onException: ajaxFailure
     });
 }
 

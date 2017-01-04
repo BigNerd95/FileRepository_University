@@ -39,17 +39,27 @@ function register(){
     }
 }
 
-function availableUsername(username){
-    sendAjax(USER_FUNCTIONS+'available.php', checkUsername, {
-        username: username
-    });
+function checkLogin(result){
+    console.log(result);
+    if (result.error == CL_NO_ERROR){
+        openIndex();
+        //info("Logging in...");
+        //setTimeout(openIndex, 1000);
+    } else {
+        //tempInfo("Worng username or password!", 4);
+        tempInfo(error_messages[result.error], 4);
+        $('loginpass').setValue("");
+        $('loginpass').shake();
+    }
 }
 
-function checkUsername(result){
-    if (result.error == CL_USER_ALREADY_EXISTS){
-        $('registeruser').addClassName('errorField');
+function checkRegister(result){
+    console.log(result);
+    if (result.error == CL_NO_ERROR){
+        openIndex();
     } else {
-        $('registeruser').removeClassName('errorField');
+        tempInfo(error_messages[result.error], 4);
+        $('register').reset();
     }
 }
 
@@ -62,24 +72,44 @@ function getFormValue(id){
     return value;
 }
 
-function checkLogin(result){
-    console.log(result);
-    if (result.error == 0)
-        openIndex();
-    else
-        alert("no");
-}
-
-function checkRegister(result){
-    console.log(result);
-    if (result.error == 0)
-        openIndex();
-    else
-        alert("no");
+// check if inserted username is available
+function availableUsername(username){
+    sendAjax(USER_FUNCTIONS+'available.php',
+        // anonymous callback
+        function(result){
+            if (result.error == CL_USER_ALREADY_EXISTS){
+                $('registeruser').addClassName('errorField');
+                info(error_messages[result.error]);
+            } else {
+                $('registeruser').removeClassName('errorField');
+                info();
+            }
+        },
+        // ajax request parameters
+        {
+            username: username
+        }
+    );
 }
 
 function openIndex(){
-    window.location.assign(".");
+    window.location.assign("."); // index.html / index.php
+}
+
+function tempInfo(message, seconds){
+    clearTimeout(window.info_timeout);
+    info(message); // set message
+    window.info_timeout = setTimeout(function(){
+        info(); // hide message after sencods
+    }, seconds*1000);
+}
+
+function info(message){
+    $('cinfo').update(message);
+    if (message)
+        $('cinfo').show();
+    else
+        $('cinfo').hide();
 }
 
 function showLogin(){
@@ -99,6 +129,7 @@ function showRegister(){
 }
 
 function resetForms(){
+    info();
     $('register').reset();
     $('login').reset();
     $('registeruser').removeClassName('errorField');
@@ -114,9 +145,9 @@ function bindEvents(){
         showRegister();
     });
 
+    // Forms submissions
     $('login').on('submit', function(event, element){
         event.stop(); // prevent form submission
-        //console.log(element);
         login();
     });
     $('register').on('submit', function(event, element){

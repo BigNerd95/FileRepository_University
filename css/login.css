@@ -1,21 +1,25 @@
 body {
 	background-color: #1ea468;
 	font-family: Helvetica;
-	margin:0;
-   	padding:0;
+	margin: 0px !important;
+   	padding: 0px !important;
 }
 
 #header {
 	text-align: center;
-	color: white;
-	font-size: 40px;
+	margin: 40px;
 }
 
 #footer {
 	text-align: center;
-	margin-top: 50px;
+	margin: 40px;
 }
 
+#header > span {
+	color: white;
+	font-size: 70px;
+	font-weight: bold;
+}
 
 #container {
 	background-color: #0c9256;
@@ -52,6 +56,11 @@ body {
 	padding-right: 20px;
 	padding-top: 40px;
 	padding-bottom: 40px;
+}
+
+#cinfo {
+	font-size: 26px;
+	margin-top: 30px;
 }
 
 .selected {

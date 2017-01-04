@@ -5,6 +5,20 @@
 
 	require_once(__DIR__.'/../config.php');
 
+
+	const CL_ALREADY_LOGGEDIN = "ALREADY_LOGGEDIN";
+	const CL_NOT_LOGGEDIN = "NOT_LOGGEDIN";
+
+	const CL_NO_ERROR = "NO_ERROR";
+
+	// API errors
+	const CL_MISSING_PARAMETER = "MISSING_PARAMETER";
+	const CL_WRONG_CREDENTIALS = "WRONG_CREDENTIALS";
+	const CL_USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
+	const CL_REGISTRATION_FAILED = "REGISTRATION_FAILED";
+	const CL_FAILED_ACTION = "FAILED_ACTION";
+	const CL_UNKNOWN_ACTION = "UNKNOWN_ACTION";
+	/*
 	// Session errors
 	const CL_ALREADY_LOGGEDIN = -2;
 	const CL_NOT_LOGGEDIN = -1;
@@ -18,7 +32,7 @@
 	const CL_REGISTRATION_FAILED = 4;
 	const CL_FAILED_ACTION = 5;
 	const CL_UNKNOWN_ACTION = 6;
-
+	*/
 
 	function login($userid, $username) {
 		$_SESSION['userid'] = $userid;
@@ -45,7 +59,7 @@
 	function createDirectory($name){
 		if (empty($name))
 			return False;
-		return mkdir(PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$name, 0777);
+		return mkdir(PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$name, 0777); // 0777 o 0700
 	}
 
 	function deleteDirectory($name){

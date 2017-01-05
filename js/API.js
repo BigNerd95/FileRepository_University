@@ -84,7 +84,9 @@ function ajaxFailure(){
     console.log("Errore ajax");
 }
 
-function sendAjax(url, callback, params={}){
+function sendAjax(url, callback, params){
+    if (params == undefined)
+        params = {};
     new Ajax.Request(url, {
         method: "post",
         parameters: params,

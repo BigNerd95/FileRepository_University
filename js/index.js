@@ -59,6 +59,12 @@ function showFiles(){
     $('files').show();
 }
 
+function listFiles(){
+    sendAjax(FILE_FUNCTIONS+'list.php', function(result) {
+        console.log(result);
+    });
+}
+
 function editFileName() {
 
 }
@@ -180,6 +186,8 @@ function checkDeleteAccount(result){
 }
 
 
+
+
 // attach events callback to page elements
 function bindEvents(){
     // Top barr buttons
@@ -191,6 +199,39 @@ function bindEvents(){
     });
     $('logout_btn').on('click', function(event, element){
         logout();
+    });
+
+
+    //$('up').on('submit', function(event, element){
+    $('select_file').on('change', function(event, element){
+        event.stop();
+        //console.log(event.target);
+        //console.log(new FormData(event.target));
+
+        var data = new FormData();
+        data.append('file', element.files[0]);
+
+        var ax = new XMLHttpRequest();
+        ax.open("post", FILE_FUNCTIONS+'send.php');
+        ax.onload=function(r){
+            console.log(ax.responseText);
+        }
+        ax.send(data);
+        return;
+
+        /*
+        //NON FUNZIONA CON PROTOTYPE
+        new Ajax.Request(FILE_FUNCTIONS+'send.php', {
+            method: "post",
+            postBody: data,
+            onSuccess: function(response) {
+                console.log(LOG_DEBUG, response.responseText);
+                //callback(response.responseJSON);
+            },
+            onFailure: ajaxFailure//,
+            //onException: ajaxFailure
+        });
+        */
     });
 
     // Settings tab buttons

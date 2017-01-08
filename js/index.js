@@ -54,15 +54,44 @@ function info(message){
 function showFiles(){
     $('settings_btn').removeClassName('selected');
     $('settings').hide();
-
     $('files_btn').addClassName('selected');
     $('files').show();
+
+    listFiles();
 }
 
 function listFiles(){
     sendAjax(FILE_FUNCTIONS+'list.php', function(result) {
-        console.log(result);
+        switch (result.error){
+            default:
+                console.log(getErrorMessage(result.error));
+                break;
+
+            case CL_NO_ERROR:
+                listFilesFromArray(result.files);
+                break;
+
+            case CL_NOT_LOGGEDIN:
+                openLogin();
+                break;
+        }
     });
+}
+
+function listFilesFromArray(files){
+    console.log(files);
+
+    $('list_file').update(); // empty the list
+
+    if (files.length > 0) {
+        var list = new Element('ul'); // create a new list
+        $('list_file').insert(list); // show the list in the dom
+        files.each(function(element, index, array){ // populate the new list
+            list.insert(new Element('li').update(element));
+        });
+    } else {
+        $('list_file').insert(new Element('span').update("NO FILES"));
+    }
 }
 
 function editFileName() {

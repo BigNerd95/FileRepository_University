@@ -13,7 +13,7 @@
 			json_response(CL_INVALID_DIRECTORY);
 		$files = scandir($dir_path, SCANDIR_SORT_NONE);
 		$files = array_diff($files, [".",".."]); # Removes unwanted files
-		return $files;
+		return array_values($files); # be sure to return an array
 	}
 
 	# --- Main starts here ---

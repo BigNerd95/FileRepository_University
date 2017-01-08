@@ -36,7 +36,11 @@
 		</div>
 
 		<div id="files" class="rounded centered">
-			<input id="select_file" type="file" />
+			<div id="btns_file">
+				<input id="select_file" type="file" />
+			</div>
+			<div id="list_file" class="roundedbottom">
+			</div>
 				<!--
 				- lista files
 				- trascina per eliminare

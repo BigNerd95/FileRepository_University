@@ -37,7 +37,11 @@
 
 		<div id="files" class="rounded centered">
 			<div id="btns_file">
-				<input id="select_file" type="file" />
+				<!--div id="select_file_container">
+					<input id="select_file" type="file" />
+				</div-->
+				<label id="select_file">upload</label>
+				<label id="delete_file">delete</label>
 			</div>
 			<div id="list_file" class="roundedbottom">
 			</div>

@@ -22,14 +22,10 @@
 		json_response(CL_NOT_LOGGEDIN);
 
 	$filename = getParam('filename');
-	if (check_file($filename)){
-		header("Content-Disposition: attachment; filename=$filename");
-		header("Content-Description: File Transfer");
-		header('Content-Type: application/force-download');
-		header("Content-Transfer-Encoding: binary");
-		readfile(filePath($filename));
-	} else {
-		header("HTTP/1.0 404 File $filename Not Found");
-	}
+	if (!check_file($filename))
+		json_response(CL_FILE_NOT_FOUND);
+
+	json_response(CL_NO_ERROR);
+	//json_response(CL_NO_ERROR, ['filename' => $filename]);
 
 ?>

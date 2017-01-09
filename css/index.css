@@ -100,6 +100,12 @@ body {
 	border: 1px solid;
 }
 
+#list_file span {
+	line-height: 430px;
+	vertical-align: middle;
+	text-align: center;
+}
+
 #list_file ul {
 	list-style: none;
 	margin: 0;
@@ -121,6 +127,16 @@ body {
 #list_file ul li:active {
 	background-color: red;
 }
+
+#select_file {
+	cursor: pointer;
+}
+
+#select_file:active {
+	cursor: pointer;
+	color: white;
+}
+
 
 /***********
 * SETTINGS *

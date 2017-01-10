@@ -79,17 +79,17 @@ body {
 	background-color: #0c9256;
 	margin: auto;
 	width: 80%;
-	height: 500px;
+	height: 540px;
 	font-size: 30px;
 	box-shadow: 0px 0px 10px rgba(0,0,0,1);
-
 }
 
 #btns_file {
-	display: inline-block;
-	height: 50px;
+	height: 100px;
 	::background-color: red;
 	margin: 5px;
+	overflow: hidden;
+	position: relative;
 }
 
 #list_file {
@@ -129,12 +129,44 @@ body {
 }
 
 #select_file {
+	background-image: url("../img/upload.png");
+	background-size: 70px 70px;
+	height: 70px;
+	width: 70px;
+	margin: 15px;
 	cursor: pointer;
+	float: left;
 }
 
-#select_file:active {
-	cursor: pointer;
-	color: white;
+#select_file.strips {
+	background-image: url("../img/upload_strips.png");
+}
+
+#select_file:active, #select_file.highlight {
+	background-image: url("../img/upload_strips_highlight.png");
+}
+
+#delete_file {
+	background-image: url("../img/trash_close.png");
+	background-repeat: no-repeat;
+	background-size: 80px 80px;
+	height: 80px;
+	width: 80px;
+	margin: 10px;
+	float: left;
+	::background-color: red;
+	padding: 0;
+	transition: background-image 0.3s;
+	right: 0px;
+	position: absolute;
+}
+
+#delete_file.highlight {
+	background-image: url("../img/trash_open.png");
+}
+
+#delete_file.over {
+	background-image: url("../img/trash_open_highlight.png") !important;
 }
 
 

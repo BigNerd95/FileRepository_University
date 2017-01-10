@@ -119,8 +119,12 @@ function listFilesFromArray(files){
             item.draggable = true;
             item.on('dragstart', function(event, element){
                 event.dataTransfer.setData('filename', element.innerHTML);
-                event.asd = "xxx";
+                $('delete_file').addClassName('highlight');
             });
+            item.on('dragend', function(event, element){
+                $('delete_file').removeClassName('highlight');
+            });
+
             list.insert(item); // add item to list
         });
     } else {
@@ -335,25 +339,24 @@ function bindEvents(){
         logout();
     });
 
-    /*
-    $('select_file').on('change', function(event, element){
-        event.stop();
-        if (element.value != ''){
-            uploadFile(element.files[0]);
-            element.setValue(''); // reset field's value
-        }
-    });*/
+
     $('select_file').on('dragover', function(event, element){
         event.stop();
-        element.style.color = "white";
+        //element.style.color = "white";
+        //if(element.hasClassName('strips'))
+        if (!$('delete_file').hasClassName('highlight'))
+            element.addClassName('highlight');
     });
     $('select_file').on('dragleave', function(event, element){
         event.stop();
-        element.style.color = "black";
+        //element.style.color = "black";
+        element.removeClassName('highlight');
     });
     $('select_file').on('drop', function(event, element){
         event.stop();
-        element.style.color = "black";
+        //element.style.color = "black";
+        element.removeClassName('strips');
+        element.removeClassName('highlight');
         //console.log(event.dataTransfer.files);
         if (event.dataTransfer.files.length == 1){
             uploadFile(event.dataTransfer.files[0]);
@@ -375,15 +378,21 @@ function bindEvents(){
     // DELETE FILES DRAG AND DROP
     $('delete_file').on('dragover', function(event, element){
         event.stop();
-        element.style.color = "white";
+        // only color the trash in white if it is already open
+        if (element.hasClassName('highlight'))
+            element.addClassName('over');
     });
     $('delete_file').on('dragleave', function(event, element){
         event.stop();
-        element.style.color = "black";
+        // remove the white on dragleave
+        element.removeClassName('over');
     });
     $('delete_file').on('drop', function(event, element){
         event.stop();
-        element.style.color = "black";
+        // on drop remove all effects
+        element.removeClassName('highlight');
+        element.removeClassName('over');
+        // get element filename
         var filename = event.dataTransfer.getData('filename');
         if (filename != ''){
             deleteFile(filename);
@@ -394,15 +403,22 @@ function bindEvents(){
 
     // DISABLE DOCUMENT DROP
     document.on('dragover', function(event, element){
-        if (element != $('select_file'))
-            event.stop();
-        //return false;
+        //if (element != $('select_file'))
+        event.stop();
+        if (!$('delete_file').hasClassName('highlight')){
+            $('select_file').addClassName('strips');
+        }
     });
     document.on('drop', function(event, element){ // drop
-        if (element != $('select_file'))
-            event.stop();
-        //event.stop();
+        //if (element != $('select_file'))
+        event.stop();
+        $('select_file').removeClassName('strips');
     });
+    document.on('dragleave', function(event, element){ // drop
+        //console.log(element);
+        $('select_file').removeClassName('strips');
+    });
+
 
 
     // Settings tab buttons

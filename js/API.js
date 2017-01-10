@@ -31,6 +31,7 @@ const CL_USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
 const CL_REGISTRATION_FAILED = "REGISTRATION_FAILED";
 const CL_FAILED_ACTION = "FAILED_ACTION";
 const CL_UNKNOWN_ACTION = "UNKNOWN_ACTION";
+const CL_DB_ERROR = "DB_ERROR";
 
 const error_messages_en = {
     ALREADY_LOGGEDIN: "You are already logged in!",
@@ -41,7 +42,8 @@ const error_messages_en = {
     USER_ALREADY_EXISTS: "This username already exists!",
     REGISTRATION_FAILED: "Registration failed!",
     FAILED_ACTION: "Action failed!",
-    UNKNOWN_ACTION: "Action unknown!"
+    UNKNOWN_ACTION: "Action unknown!",
+    DB_ERROR: "Database error!"
 }
 
 const error_messages_it = {
@@ -53,7 +55,8 @@ const error_messages_it = {
     USER_ALREADY_EXISTS: "Questo utente è già registrato!",
     REGISTRATION_FAILED: "Registrazione fallita!",
     FAILED_ACTION: "Azione fallita!",
-    UNKNOWN_ACTION: "Azione sconosciuta!"
+    UNKNOWN_ACTION: "Azione sconosciuta!",
+    DB_ERROR: "Errore nel database!"
 }
 
 

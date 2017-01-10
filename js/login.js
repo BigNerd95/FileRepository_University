@@ -40,25 +40,28 @@ function register(){
 }
 
 function checkLogin(result){
-    console.log(result);
-    if (result.error == CL_NO_ERROR){
-        openIndex();
-        //info("Logging in...");
-        //setTimeout(openIndex, 1000);
-    } else {
-        //tempInfo("Worng username or password!", 4);
-        tempInfo(error_messages[result.error], 4);
-        $('loginpass').setValue("");
-        $('loginpass').shake();
+    //console.log(result);
+    switch (result.error){
+        case CL_NO_ERROR:
+            openIndex();
+            break;
+        case CL_WRONG_CREDENTIALS:
+            tempInfo(error_messages[result.error], 3);
+            $('loginpass').setValue("");
+            $('loginpass').shake();
+            break;
+        default:
+            tempInfo(error_messages[result.error], 3);
+            break;
     }
 }
 
 function checkRegister(result){
-    console.log(result);
+    //console.log(result);
     if (result.error == CL_NO_ERROR){
         openIndex();
     } else {
-        tempInfo(error_messages[result.error], 4);
+        tempInfo(error_messages[result.error], 3);
         $('register').reset();
     }
 }

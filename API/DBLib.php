@@ -1,12 +1,7 @@
 <?php
-	/*
-	const DB_SERVER = '127.0.0.1';
-    const DB_USER = 'root';
-    const DB_PASS = 'forzaunito';
-    const DB_NAME = 'repository';
-	*/
 
 	require_once(__DIR__.'/../config.php');
+	require_once('CommLib.php');
 
 	# -------- Database access functions ---------
 
@@ -24,7 +19,12 @@
     }
 
 	function dbConnect(){
-		return mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+		$conn = @mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+		if ($conn) {
+			return $conn;
+		} else {
+			json_response(CL_DB_ERROR);
+		}
     }
 
     function dbQuote($db, $value){

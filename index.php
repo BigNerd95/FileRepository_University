@@ -23,6 +23,9 @@
 		<script src="js/scriptaculous/scriptaculous.js" type="text/javascript"></script>
 
 		<script src="js/API.js" type="text/javascript"></script>
+		<script src="js/commons.js" type="text/javascript"></script>
+		<script src="js/files.js" type="text/javascript"></script>
+		<script src="js/settings.js" type="text/javascript"></script>
 		<script src="js/index.js" type="text/javascript"></script>
 	</head>
 	<body>
@@ -38,17 +41,11 @@
 		<div id="files" class="rounded centered">
 			<div id="btns_file">
 				<div id="select_file"></div>
+				<div id="info_file"></div>
 				<div id="delete_file" title="Drag and drop a file to delete"></div>
 			</div>
 			<div id="list_file" class="roundedbottom">
 			</div>
-				<!--
-				- lista files
-				- trascina per eliminare
-				- trascina per uploadare
-				- clicca 2 volte per scaricare
-				- modifica nome file
-				-->
 		</div>
 
 		<div id="settings" class="rounded centered">
@@ -59,15 +56,15 @@
 
 			<div id="sbody">
 				<form id="change_password">
-					<input type="password" placeholder="Password" class="rounded" id="cp_password" required>
-					<input type="password" placeholder="New Password" class="rounded" id="cp_new_password" required>
-					<input type="password" placeholder="Retype new password" class="rounded" id="cp_new_password_2" required>
+					<input type="password" maxlength="20" placeholder="Password" class="rounded" id="cp_password" required>
+					<input type="password" maxlength="20" placeholder="New Password" class="rounded" id="cp_new_password" required>
+					<input type="password" maxlength="20" placeholder="Retype new password" class="rounded" id="cp_new_password_2" required>
 					<input type="submit" class="rounded" id="loginsbmt" value="Change password">
 				</form>
 
 				<form id="delete_account" >
 					<span id="delete_warning">This action is irreversible!</span>
-					<input type="password" placeholder="Password" class="rounded" id="da_password" required>
+					<input type="password" maxlength="20" placeholder="Password" class="rounded" id="da_password" required>
 					<input type="submit" class="rounded warning" id="registersbmt" value="Delete account">
 				</form>
 

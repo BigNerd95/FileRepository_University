@@ -21,23 +21,7 @@
 	const CL_UPLOAD_FAILED = "UPLOAD_FAILED";
 	const CL_INVALID_DIRECTORY = "INVALID_DIRECTORY";
 	const CL_DB_ERROR = "DB_ERROR";
-
-
-	/*
-	// Session errors
-	const CL_ALREADY_LOGGEDIN = -2;
-	const CL_NOT_LOGGEDIN = -1;
-
-	const CL_NO_ERROR = 0;
-
-	// API errors
-	const CL_MISSING_PARAMETER = 1;
-	const CL_WRONG_CREDENTIALS = 2;
-	const CL_USER_ALREADY_EXISTS = 3;
-	const CL_REGISTRATION_FAILED = 4;
-	const CL_FAILED_ACTION = 5;
-	const CL_UNKNOWN_ACTION = 6;
-	*/
+	const CL_FILE_NOT_FOUND = "FILE_NOT_FOUND";
 
 	function login($userid, $username) {
 		$_SESSION['userid'] = $userid;
@@ -81,6 +65,13 @@
 			(is_dir($file) && !is_link($dir)) ? rrmdir($file) : unlink($file);
 		}
 		return rmdir($path);
+	}
+
+	function safeFilename($name){
+		$name = str_replace('..', '', $name);
+		$name = str_replace( '/', '', $name);
+		$name = str_replace('\\', '', $name);
+		return $name;
 	}
 
 	function json_response($error_code, $keyvalues = []) {

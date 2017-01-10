@@ -23,6 +23,7 @@
 		<script src="js/scriptaculous/scriptaculous.js" type="text/javascript"></script>
 
 		<script src="js/API.js" type="text/javascript"></script>
+		<script src="js/commons.js" type="text/javascript"></script>
 		<script src="js/login.js" type="text/javascript"></script>
 	</head>
 	<body>
@@ -40,15 +41,15 @@
 
 			<div id="cbody">
 				<form id="login">
-					<input type="text" placeholder="Username" class="rounded" id="loginuser" required>
-					<input type="password" placeholder="Password" class="rounded" id="loginpass" required>
+					<input type="text" placeholder="Username" maxlength="20" class="rounded" id="loginuser" required>
+					<input type="password" placeholder="Password" maxlength="20" class="rounded" id="loginpass" required>
 					<input type="submit" class="rounded" id="loginsbmt" value="Login">
 				</form>
 
 				<form id="register" >
-					<input type="text" placeholder="Username" class="rounded" id="registeruser" required>
-					<input type="password" placeholder="Password" class="rounded" id="registerpass" required>
-					<input type="password" placeholder="Retype password" class="rounded" id="registerpass2" required>
+					<input type="text" placeholder="Username" maxlength="20" class="rounded" id="registeruser" required>
+					<input type="password" placeholder="Password" maxlength="20" class="rounded" id="registerpass" required>
+					<input type="password" placeholder="Retype password" maxlength="20" class="rounded" id="registerpass2" required>
 					<input type="submit" class="rounded" id="registersbmt" value="Register">
 				</form>
 

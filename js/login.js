@@ -46,12 +46,12 @@ function checkLogin(result){
             openIndex();
             break;
         case CL_WRONG_CREDENTIALS:
-            tempInfo(error_messages[result.error], 3);
+            info('cinfo', error_messages[result.error], 3);
             $('loginpass').setValue("");
             $('loginpass').shake();
             break;
         default:
-            tempInfo(error_messages[result.error], 3);
+            info('cinfo', error_messages[result.error], 3);
             break;
     }
 }
@@ -61,18 +61,9 @@ function checkRegister(result){
     if (result.error == CL_NO_ERROR){
         openIndex();
     } else {
-        tempInfo(error_messages[result.error], 3);
+        info('cinfo', error_messages[result.error], 3);
         $('register').reset();
     }
-}
-
-function getFormValue(id){
-    var object = $(id);
-    var value = object.getValue();
-    if (value == ""){
-        object.shake();
-    }
-    return value;
 }
 
 // check if inserted username is available
@@ -82,10 +73,10 @@ function availableUsername(username){
         function(result){
             if (result.error == CL_USER_ALREADY_EXISTS){
                 $('registeruser').addClassName('errorField');
-                info(error_messages[result.error]);
+                info('cinfo', error_messages[result.error]);
             } else {
                 $('registeruser').removeClassName('errorField');
-                info();
+                info('cinfo');
             }
         },
         // ajax request parameters
@@ -97,22 +88,6 @@ function availableUsername(username){
 
 function openIndex(){
     window.location.assign("."); // index.html / index.php
-}
-
-function tempInfo(message, seconds){
-    clearTimeout(window.info_timeout);
-    info(message); // set message
-    window.info_timeout = setTimeout(function(){
-        info(); // hide message after sencods
-    }, seconds*1000);
-}
-
-function info(message){
-    $('cinfo').update(message);
-    if (message)
-        $('cinfo').show();
-    else
-        $('cinfo').hide();
 }
 
 function showLogin(){
@@ -132,7 +107,7 @@ function showRegister(){
 }
 
 function resetForms(){
-    info();
+    info('cinfo');
     $('register').reset();
     $('login').reset();
     $('registeruser').removeClassName('errorField');

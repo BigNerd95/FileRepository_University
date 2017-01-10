@@ -7,6 +7,25 @@
 	# Include Communication Library
 	require_once('../CommLib.php');
 
+	function uploadPath($filename){
+		$dir = PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$_SESSION['userid'].'/';
+		$filename = safeFilename($filename);
+		$filename = checkFilename($dir, $filename);
+		return $dir.$filename;
+	}
+
+	function checkFilename($dir, $name){
+		$file = pathinfo($name);
+		$filename = $file['filename'];
+		$ext = (isset($file['extension'])? '.'.$file['extension'] : '');
+		$i = 1;
+		while(file_exists($dir.$filename.$ext)){
+			$filename = $file['filename']." ($i)";
+			$i++;
+		}
+		return $filename.$ext;
+	}
+
 	session_start();
 
 	# Check if the user is authenticated
@@ -15,7 +34,8 @@
 
 	$file = $_FILES['file'];
 	if ($file['error'] == UPLOAD_ERR_OK){
-		move_uploaded_file($file["tmp_name"], PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$_SESSION['userid'].'/'.$file["name"]);
+		$path = uploadPath($file["name"]);
+		move_uploaded_file($file["tmp_name"], $path);
 		json_response(CL_NO_ERROR);
 	} else {
 		json_response(CL_UPLOAD_FAILED);

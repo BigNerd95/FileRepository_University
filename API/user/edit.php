@@ -12,14 +12,6 @@
 		return ($user_id == $_SESSION['userid']);
 	}
 
-	function setPassword($id, $password) {
-		$query =   "UPDATE users
-					SET password = '%s'
-					WHERE id = %d";
-		$result = dbQuery($query, [$password, $id]);
-		return $result;
-	}
-
 	function editPassword($newPassword){
 		if(!setPassword($_SESSION['userid'], $newPassword))
 			json_response(CL_FAILED_ACTION);
@@ -30,7 +22,6 @@
 			json_response(CL_FAILED_ACTION);
 		if(!deleteDirectory($_SESSION['userid']))
 			json_response(CL_FAILED_ACTION);
-		# sql query che cancelli tutti i file referenziati nel db
 		logout();
 	}
 

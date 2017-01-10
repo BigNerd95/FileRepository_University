@@ -1,5 +1,9 @@
 <?php
 
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+
 	require_once(__DIR__.'/../config.php');
 	require_once('CommLib.php');
 
@@ -46,6 +50,7 @@
 		$query =   "INSERT INTO users
 					(username, password)
 					VALUES ('%s', '%s')";
+		$password = md5($password);
 		$result = dbQuery($query, [$username, $password]);
 		return $result;
 	}
@@ -58,16 +63,26 @@
 		return $result;
 	}
 
+	function setPassword($id, $password) {
+		$query =   "UPDATE users
+					SET password = '%s'
+					WHERE id = %d";
+		$password = md5($password);
+		$result = dbQuery($query, [$password, $id]);
+		return $result;
+	}
+
 	# Gets user id from username and password
 	function getUserID($username, $password) {
-		$query_login = "SELECT id
+		$query = "SELECT id
 						FROM users
 						WHERE username = '%s'
 						AND password = '%s'
 						LIMIT 0,1";
-		$query_result = dbQuery($query_login, [$username, $password]);
-		if (dbRowCount($query_result) == 1) {
-			return dbRowFetch($query_result)['id'];
+		$password = md5($password);
+		$result = dbQuery($query, [$username, $password]);
+		if (dbRowCount($result) == 1) {
+			return dbRowFetch($result)['id'];
 		} else {
 			return NULL;
 		}

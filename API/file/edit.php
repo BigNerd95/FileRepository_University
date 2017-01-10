@@ -8,8 +8,13 @@
 
 	function deleteFile($name){
 		$userdir = $_SESSION['userid'];
-		$path = PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$userdir.'/'.$name;
-		unlink($path);
+		$dir_path = PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$userdir.'/';
+		$filename = safeFilename($name);
+		$path = $dir_path.$filename;
+		if (file_exists($path))
+			unlink($path);
+		else
+			json_response(CL_FILE_NOT_FOUND);
 	}
 
 	session_start();

@@ -7,14 +7,24 @@ TODO:
 - controllare se os win o unix e invertire path slash
 - unificare funzioni check file php
 - aggiungere nome utente in alto nella pagina index
+- controllare lunghezza username e password sia su js che php
 */
 
 
-// init function runned when page is loaded
+// init function when page is loaded
 document.observe("dom:loaded", function(){
     showFiles();
-    bindEvents();
+    initElements();
+    allowDrag();
 });
+
+// attach events callback to page elements
+function initElements(){
+    initTopBar();
+    initSelectFile();
+    initDeleteFile();
+    initSettings();
+}
 
 function logout(){
     sendAjax(USER_FUNCTIONS+'logout.php', function(result){
@@ -28,10 +38,12 @@ function logout(){
     });
 }
 
+// redirect user on login page
 function openLogin(){
     window.location.assign("login.php"); // index.html / index.php
 }
 
+// Files button callback, show files window
 function showFiles(){
     $('settings_btn').removeClassName('selected');
     $('settings').hide();
@@ -41,6 +53,7 @@ function showFiles(){
     listFiles();
 }
 
+// Settings button callback, show settings window
 function showSettings(){
     $('files_btn').removeClassName('selected');
     $('files').hide();
@@ -51,8 +64,8 @@ function showSettings(){
     showChangePassword();
 }
 
-// attach events callback to page elements
-function bindEvents(){
+// Init topbar buttons
+function initTopBar() {
     // Top barr buttons
     $('files_btn').on('click', function(event, element){
         showFiles();
@@ -63,8 +76,10 @@ function bindEvents(){
     $('logout_btn').on('click', function(event, element){
         logout();
     });
+}
 
-
+// Init upload button
+function initSelectFile(){
     $('select_file').on('dragover', function(event, element){
         event.stop();
         //element.style.color = "white";
@@ -99,7 +114,10 @@ function bindEvents(){
         });
         select.click();
     });
+}
 
+// Init delete button
+function initDeleteFile() {
     // DELETE FILES DRAG AND DROP
     $('delete_file').hide();
     $('delete_file').on('dragover', function(event, element){
@@ -126,27 +144,30 @@ function bindEvents(){
             element.shake();
         }
     });
+}
 
-    // DISABLE DOCUMENT DROP
+// Allow drag and drop of files on the page from the desktop
+function allowDrag(){
     document.on('dragover', function(event, element){
-        //if (element != $('select_file'))
-        event.stop();
+        event.stop(); // prevent document drop
+        // hightlight upload arrow on file drag (only if it is as external file)
         if (!$('delete_file').hasClassName('highlight')){
             $('select_file').addClassName('upload');
         }
     });
-    document.on('drop', function(event, element){ // drop
-        //if (element != $('select_file'))
-        event.stop();
+    document.on('drop', function(event, element){
+        event.stop(); // prevent document drop
+        // remove upload arrow hightlight
         $('select_file').removeClassName('upload');
     });
-    document.on('dragleave', function(event, element){ // drop
-        //console.log(element);
+    document.on('dragleave', function(event, element){
+        // remove upload arrow hightlight
         $('select_file').removeClassName('upload');
     });
+}
 
-
-
+// Init settins buttons
+function initSettings(){
     // Settings tab buttons
     $('change_password_btn').on('click', function(event, element){
         showChangePassword();

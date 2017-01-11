@@ -6,21 +6,6 @@ var LOG_DEBUG = '[DEBUG]:';
 var USER_FUNCTIONS = 'API/user/';
 var FILE_FUNCTIONS = 'API/file/';
 
-/*
-const CL_ALREADY_LOGGEDIN = -2;
-const CL_NOT_LOGGEDIN = -1;
-
-const CL_NO_ERROR = 0;
-
-// API errors
-const CL_MISSING_PARAMETER = 1;
-const CL_WRONG_CREDENTIALS = 2;
-const CL_USER_ALREADY_EXISTS = 3;
-const CL_REGISTRATION_FAILED = 4;
-const CL_FAILED_ACTION = 5;
-const CL_UNKNOWN_ACTION = 6;
-*/
-
 const CL_NO_ERROR = "NO_ERROR";
 const CL_NOT_LOGGEDIN = "NOT_LOGGEDIN";
 const CL_ALREADY_LOGGEDIN = "ALREADY_LOGGEDIN";
@@ -73,15 +58,6 @@ const locale_strings_it = {
 error_messages = error_messages_en;
 locale_strings = locale_strings_it;
 
-
-// init function runned when page is loaded
-/*
-document.observe("dom:loaded", function(){
-    checkStatus();
-    bindEvents();
-    console.log(LOG_INFO, 'Init done');
-});
-*/
 
 function ajaxFailure(){
     console.log("Errore ajax");

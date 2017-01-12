@@ -39,19 +39,19 @@
 
 	# Check if the user is authenticated
 	if (!isUserLoggedin())
-		json_response(CL_NOT_AUTHENTICATED);
+		json_response(API_NOT_AUTHENTICATED);
 
 
 	if (!isset($_FILES['file']))
-		json_response(CL_UPLOAD_FAILED);
+		json_response(API_UPLOAD_FAILED);
 
 	$file = $_FILES['file'];
 	if ($file['error'] == UPLOAD_ERR_OK){
 		$path = uploadPath($file["name"]);
 		move_uploaded_file($file["tmp_name"], $path);
-		json_response(CL_NO_ERROR);
+		json_response(API_NO_ERROR);
 	} else {
-		json_response(CL_UPLOAD_FAILED);
+		json_response(API_UPLOAD_FAILED);
 	}
 
 ?>

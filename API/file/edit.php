@@ -14,13 +14,13 @@
 		if (file_exists($path))
 			unlink($path);
 		else
-			json_response(CL_FILE_NOT_FOUND);
+			json_response(API_FILE_NOT_FOUND);
 	}
 
 	session_start();
 
 	if (!isUserLoggedin())
-		json_response(CL_NOT_LOGGEDIN);
+		json_response(API_NOT_LOGGEDIN);
 
 	$filename = getParam('filename');
 
@@ -38,11 +38,11 @@
 			break;
 
 		default:
-			json_response(CL_UNKNOWN_ACTION);
+			json_response(API_UNKNOWN_ACTION);
 			break;
 	}
 
-	json_response(CL_NO_ERROR);
+	json_response(API_NO_ERROR);
 
 
 ?>

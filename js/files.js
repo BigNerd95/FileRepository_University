@@ -3,17 +3,25 @@
 function listFiles(){
     // Sends an ajax request to the server API/files/list.php
     sendAjax(FILE_FUNCTIONS+'list.php', function(result) {
-        switch (result.error){
-            default:
-                console.log(getErrorMessage(result.error));
-                break;
+        if (result == undefined) {
+            info('info_file', getString('SERVER_ERROR'));
+            return;
+        }
 
-            case CL_NO_ERROR:
+        switch (result.error){
+            // If no error, show files list
+            case API_NO_ERROR:
                 listFilesFromArray(result.files);
                 break;
 
-            case CL_NOT_LOGGEDIN:
+            // If not logged in, show login page
+            case API_NOT_LOGGEDIN:
                 openLogin();
+                break;
+
+            // Else show a info message
+            default:
+                info('info_file', getErrorString(result.error), 3);
                 break;
         }
     });
@@ -37,11 +45,10 @@ function listFilesFromArray(files){
             var filename = element.escapeHTML();    // Escape file names to avoid xss
             var item = new Element('li');           // Create new list item
             item.update(filename);                  // Set item content
-            item.title = "Double click to download";
+            item.title = getString('DOWNLOAD_FILE_TITLE');
 
             // Double click handler
             item.on('dblclick', function(event, element){
-                console.log("double");
                 downloadFile(element.innerHTML);
             });
 
@@ -58,8 +65,6 @@ function listFilesFromArray(files){
             /*
             item.on('contextmenu', function(event, element){
                 event.stop();
-                console.log("as");
-                console.log(event.isRightClick());
             });
             item.on('click', function(){
                 console.log("single");
@@ -71,26 +76,34 @@ function listFilesFromArray(files){
     } else {
     // If there are NO files
         $('delete_file').hide(); // Hide trash icon
-        $('list_file').insert(new Element('span').update("NO FILES"));  // Show message in files list
-        info('info_file', 'Drag and drop new files on the arrow');      // Show info message
+        $('list_file').insert(new Element('span').update(getString('NO_FILES')));  // Show message in files list
+        info('info_file', getString('DRAG_FILES'));      // Show info message
     }
-}
-
-function editFileName() {
-
 }
 
 // File drop callback on trash icon
 function deleteFile(filename){
     // Send an ajax request to API/files/edit.php
     sendAjax(FILE_FUNCTIONS+'edit.php', function(result){
-        //console.log(result);
-        // If there is no error, reload file list
-        if (result.error == CL_NO_ERROR){
-            listFiles();
-        } else {
+        if (result == undefined) {
+            info('info_file', getString('SERVER_ERROR'));
+            return;
+        }
+        switch (result.error){
+            // If there is no error, reload file list
+            case API_NO_ERROR:
+                listFiles();
+                break;
+
+            // If not logged in, show login page
+            case API_NOT_LOGGEDIN:
+                openLogin();
+                break;
+
             //Else show a info message
-            info('info_file', getErrorMessage(result.error), 3);
+            default:
+                info('info_file', getErrorString(result.error), 3);
+                break;
         }
     }, {
         action: 'delete', // The action is: delete (file)
@@ -98,41 +111,59 @@ function deleteFile(filename){
     });
 }
 
-// Check if file exixsts and download that file
+// Check if file exixsts and download it
 function downloadFile(filename){
     sendAjax(FILE_FUNCTIONS+'check.php', function(result){
-        // If file exists download it
-        if (result.error == CL_NO_ERROR){
-            // Create a form to download the file
-            var download = new Element('form', {
-                method: 'post',
-                action: FILE_FUNCTIONS+'get.php'
-            });
-            // Add the filename to the form
-            var file_request = new Element('input', {
-                type: 'hidden',
-                name: 'filename',
-                value: filename
-            });
-            download.insert(file_request);
-            // Download the file
-            download.submit();
-        } else {
-            //console.log(result.error);
-            info('info_file', getErrorMessage(result.error), 3);
+        if (result == undefined) {
+            info('info_file', getString('SERVER_ERROR'));
+            return;
+        }
+        switch (result.error){
+            // If there is no error, get file
+            case API_NO_ERROR:
+                getFile(filename);
+                break;
+
+            // If not logged in, show login page
+            case API_NOT_LOGGEDIN:
+                openLogin();
+                break;
+
+            //Else show a info message
+            default:
+                info('info_file', getErrorString(result.error), 3);
+                break;
         }
     }, {
         filename: filename // Filename to check if exists
     });
 }
 
+// Make native browser download
+function getFile(filename){
+    // Create a form to download the file
+    var download = new Element('form', {
+        method: 'post',
+        action: FILE_FUNCTIONS+'get.php'
+    });
+    // Add the filename field to the form
+    var file_request = new Element('input', {
+        type: 'hidden',
+        name: 'filename',
+        value: filename
+    });
+    download.insert(file_request);
+    // Download the file
+    download.submit();
+}
 
+// Upload a new file to the server with ajax
 function uploadFile(file){
     // Create form to send file content as POST body
     var data = new FormData();
     data.append('file', file);
 
-    // Make an ajax request with browser primitive, with Prototype it is not working
+    // Make an ajax request with browser primitive function, with Prototype it is not working
     var req = new XMLHttpRequest();
     req.open("post", FILE_FUNCTIONS+'send.php');
     // On load callback

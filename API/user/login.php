@@ -13,7 +13,7 @@
 
 	# If user is already logged in, user must logout before login again
 	if (isUserLoggedin())
-		json_response(CL_ALREADY_LOGGEDIN, ['username' => $_SESSION['username']]);
+		json_response(API_ALREADY_LOGGEDIN, ['username' => $_SESSION['username']]);
 
 	# Gets needed parameters
 	$username = getParam('username');
@@ -21,10 +21,10 @@
 
 	# Check if credentials are correct and gets userid
 	if ( !($userid = getUserID($username, $password)) )
-		json_response(CL_WRONG_CREDENTIALS);
+		json_response(API_WRONG_CREDENTIALS);
 
 	# Credentials are correct and user is logged in
 	login($userid, $username);
-	json_response(CL_NO_ERROR);
+	json_response(API_NO_ERROR);
 
 ?>

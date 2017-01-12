@@ -281,13 +281,15 @@ body {
 
 .warning {
 	background-color: #a41e0c !important;
+	color: white !important;
 }
 
 .warning:active {
 	background-color: #920c00 !important;
+	color: black !important;
 }
 
-#delete_warning {
+#da_warning {
 	margin-bottom: 30px;
 	display: block;
 	font-weight: bold;

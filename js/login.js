@@ -1,7 +1,8 @@
 // init function runned when page is loaded
 document.observe("dom:loaded", function(){
+    setLanguage();
+    initElements();
     showLogin();
-    bindEvents();
 });
 
 function login(){
@@ -40,29 +41,38 @@ function register(){
 }
 
 function checkLogin(result){
-    //console.log(result);
+    if (result == undefined) {
+        info('cinfo', getString('SERVER_ERROR'));
+        return;
+    }
     switch (result.error){
-        case CL_NO_ERROR:
+        case API_NO_ERROR:
             openIndex();
             break;
-        case CL_WRONG_CREDENTIALS:
-            info('cinfo', error_messages[result.error], 3);
+        case API_WRONG_CREDENTIALS:
+            info('cinfo', getErrorString(result.error), 3);
             $('loginpass').setValue("");
             $('loginpass').shake();
             break;
         default:
-            info('cinfo', error_messages[result.error], 3);
+            info('cinfo', getErrorString(result.error), 3);
             break;
     }
 }
 
 function checkRegister(result){
-    //console.log(result);
-    if (result.error == CL_NO_ERROR){
-        openIndex();
-    } else {
-        info('cinfo', error_messages[result.error], 3);
-        $('register').reset();
+    if (result == undefined) {
+        info('cinfo', getString('SERVER_ERROR'));
+        return;
+    }
+    switch (result.error){
+        case API_NO_ERROR:
+            openIndex();
+            break;
+        default:
+            info('cinfo', getErrorString(result.error), 3);
+            $('register').reset();
+            break;
     }
 }
 
@@ -71,9 +81,9 @@ function availableUsername(username){
     sendAjax(USER_FUNCTIONS+'available.php',
         // anonymous callback
         function(result){
-            if (result.error == CL_USER_ALREADY_EXISTS){
+            if (result.error == API_USER_ALREADY_EXISTS){
                 $('registeruser').addClassName('errorField');
-                info('cinfo', error_messages[result.error]);
+                info('cinfo', getErrorString(result.error));
             } else {
                 $('registeruser').removeClassName('errorField');
                 info('cinfo');
@@ -107,36 +117,55 @@ function showRegister(){
 }
 
 function resetForms(){
-    info('cinfo');
+    info('cinfo'); // reset info message
     $('register').reset();
     $('login').reset();
     $('registeruser').removeClassName('errorField');
 }
 
-// attach events callback to page elements
-function bindEvents(){
-    // Tab buttons
+function initLoginForm(){
+    $('loginuser').placeholder = getString('USERNAME_FIELD');
+    $('loginpass').placeholder = getString('PASSWORD_FIELD');
+    $('loginsbmt').value = getString("LOGIN_BUTTON");
+    $('loginbtn').update(getString("LOGIN_BUTTON"));
+    // Tab button
     $('loginbtn').on('click', function(event, element){
         showLogin();
     });
-    $('registerbtn').on('click', function(event, element){
-        showRegister();
-    });
 
-    // Forms submissions
+    // Form submission
     $('login').on('submit', function(event, element){
         event.stop(); // prevent form submission
         login();
     });
+}
+
+function initRegisterForm(){
+    $('registeruser').placeholder = getString('USERNAME_FIELD');
+    $('registerpass').placeholder = getString('NEW_PASSWORD_FIELD');
+    $('registerpass2').placeholder = getString('RETYPE_NEW_PASSWORD_FIELD');
+    $('registersbmt').value = getString("REGISTER_BUTTON");
+    $('registerbtn').update(getString("REGISTER_BUTTON"));
+    // Tab button
+    $('registerbtn').on('click', function(event, element){
+        showRegister();
+    });
+
+    // Form submission
     $('register').on('submit', function(event, element){
         event.stop(); // prevent form submission
         register();
     });
-
-    // Fields events
+    // Field event
     $('registeruser').on('keyup', function(event, element){
         availableUsername(element.getValue());
     });
+}
+
+// attach events callback to page elements
+function initElements(){
+    initLoginForm();
+    initRegisterForm();
 }
 
 // http://api.prototypejs.org/dom/Form/

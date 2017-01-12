@@ -14,14 +14,14 @@
 
 	function editPassword($newPassword){
 		if(!setPassword($_SESSION['userid'], $newPassword))
-			json_response(CL_FAILED_ACTION);
+			json_response(API_FAILED_ACTION);
 	}
 
 	function deleteAccount() {
 		if(!delUser($_SESSION['userid']))
-			json_response(CL_FAILED_ACTION);
+			json_response(API_FAILED_ACTION);
 		if(!deleteDirectory($_SESSION['userid']))
-			json_response(CL_FAILED_ACTION);
+			json_response(API_FAILED_ACTION);
 		logout();
 	}
 
@@ -31,12 +31,12 @@
 
 	# User must be logged in to make changes
 	if (!isUserLoggedin())
-		json_response(CL_NOT_LOGGEDIN);
+		json_response(API_NOT_LOGGEDIN);
 
 	# User must provide his password to make changes
 	$password = getParam('password');
 	if (!checkPassword($password))
-		json_response(CL_WRONG_CREDENTIALS);
+		json_response(API_WRONG_CREDENTIALS);
 
 	# User must specify what he want to change
 	$action = getParam('action');
@@ -51,10 +51,10 @@
 			break;
 
 		default:
-			json_response(CL_UNKNOWN_ACTION);
+			json_response(API_UNKNOWN_ACTION);
 			break;
 	}
 
-	json_response(CL_NO_ERROR);
+	json_response(API_NO_ERROR);
 
 ?>

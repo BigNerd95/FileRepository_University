@@ -14,15 +14,15 @@
 
 	# If user is already logged in, user must logout before register a new user
 	if (isUserLoggedin())
-		json_response(CL_ALREADY_LOGGEDIN);
+		json_response(API_ALREADY_LOGGEDIN);
 
 	// Check if username parameter is missing
 	$username = getParam('username');
 
 	// Check if username is available
 	if (userExists($username))
-		json_response(CL_USER_ALREADY_EXISTS);
+		json_response(API_USER_ALREADY_EXISTS);
 
-	json_response(CL_NO_ERROR);
+	json_response(API_NO_ERROR);
 
 ?>

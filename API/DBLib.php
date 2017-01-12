@@ -27,7 +27,7 @@
 		if ($conn) {
 			return $conn;
 		} else {
-			json_response(CL_DB_ERROR);
+			json_response(API_DB_ERROR);
 		}
     }
 

@@ -11,8 +11,8 @@
 	session_start();
 
 	if (!isUserLoggedin())
-		json_response(CL_NOT_LOGGEDIN);
+		json_response(API_NOT_LOGGEDIN);
 
-	json_response(CL_NO_ERROR, ['username' => $_SESSION['username']]);
+	json_response(API_NO_ERROR, ['username' => $_SESSION['username']]);
 
 ?>

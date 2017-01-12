@@ -6,22 +6,22 @@
 	require_once(__DIR__.'/../config.php');
 
 
-	const CL_ALREADY_LOGGEDIN = "ALREADY_LOGGEDIN";
-	const CL_NOT_LOGGEDIN = "NOT_LOGGEDIN";
+	const API_ALREADY_LOGGEDIN = "ALREADY_LOGGEDIN";
+	const API_NOT_LOGGEDIN = "NOT_LOGGEDIN";
 
-	const CL_NO_ERROR = "NO_ERROR";
+	const API_NO_ERROR = "NO_ERROR";
 
 	// API errors
-	const CL_MISSING_PARAMETER = "MISSING_PARAMETER";
-	const CL_WRONG_CREDENTIALS = "WRONG_CREDENTIALS";
-	const CL_USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
-	const CL_REGISTRATION_FAILED = "REGISTRATION_FAILED";
-	const CL_FAILED_ACTION = "FAILED_ACTION";
-	const CL_UNKNOWN_ACTION = "UNKNOWN_ACTION";
-	const CL_UPLOAD_FAILED = "UPLOAD_FAILED";
-	const CL_INVALID_DIRECTORY = "INVALID_DIRECTORY";
-	const CL_DB_ERROR = "DB_ERROR";
-	const CL_FILE_NOT_FOUND = "FILE_NOT_FOUND";
+	const API_MISSING_PARAMETER = "MISSING_PARAMETER";
+	const API_WRONG_CREDENTIALS = "WRONG_CREDENTIALS";
+	const API_USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
+	const API_REGISTRATION_FAILED = "REGISTRATION_FAILED";
+	const API_FAILED_ACTION = "FAILED_ACTION";
+	const API_UNKNOWN_ACTION = "UNKNOWN_ACTION";
+	const API_UPLOAD_FAILED = "UPLOAD_FAILED";
+	const API_INVALID_DIRECTORY = "INVALID_DIRECTORY";
+	const API_DB_ERROR = "DB_ERROR";
+	const API_FILE_NOT_FOUND = "FILE_NOT_FOUND";
 
 	function login($userid, $username) {
 		$_SESSION['userid'] = $userid;
@@ -42,7 +42,7 @@
 		if (isset($_POST[$param]))
 			return $_POST[$param];
 		else
-			json_response(CL_MISSING_PARAMETER, ['param' => $param]);
+			json_response(API_MISSING_PARAMETER, ['param' => $param]);
 	}
 
 	function createDirectory($name){
@@ -68,9 +68,9 @@
 	}
 
 	function safeFilename($name){
-		$name = str_replace('..', '', $name);
 		$name = str_replace( '/', '', $name);
 		$name = str_replace('\\', '', $name);
+		$name = str_replace('..', '', $name);
 		return $name;
 	}
 

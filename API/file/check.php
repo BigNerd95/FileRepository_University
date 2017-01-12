@@ -19,13 +19,13 @@
 	session_start();
 
 	if (!isUserLoggedin())
-		json_response(CL_NOT_LOGGEDIN);
+		json_response(API_NOT_LOGGEDIN);
 
 	$filename = getParam('filename');
 	if (!check_file($filename))
-		json_response(CL_FILE_NOT_FOUND);
+		json_response(API_FILE_NOT_FOUND);
 
-	json_response(CL_NO_ERROR);
-	//json_response(CL_NO_ERROR, ['filename' => $filename]);
+	json_response(API_NO_ERROR);
+	//json_response(API_NO_ERROR, ['filename' => $filename]);
 
 ?>

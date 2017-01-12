@@ -1,6 +1,7 @@
 
 // Empty forms fields
 function resetSettingsForms(){
+    info('sinfo'); // reset info message
     $('delete_account').reset();
     $('change_password').reset();
 }
@@ -52,28 +53,30 @@ function changePassword(){
 // change password ajax callback
 function checkChangePassword(result){
     switch (result.error){
-        default:
-            // show any other error message
-            info('sinfo', getErrorMessage(result.error), 4);
-            $('change_password').reset();
-            $('change_password').shake();
-            break;
-
-        case CL_NO_ERROR:
-            // feedback: password has changed
+        // If no error, show feedback "password changed"
+        case API_NO_ERROR:
             info('sinfo', locale_strings['PASSWORD_CHANGED'], 4);
             $('change_password').reset();
             break;
 
-        case CL_NOT_LOGGEDIN:
+        // If not logged in, show login page
+        case API_NOT_LOGGEDIN:
             openLogin();
             break;
 
-        case CL_WRONG_CREDENTIALS:
-            // provided actual password was wrong
-            info('sinfo', getErrorMessage(result.error), 4);
+        // Provided actual password was wrong
+        case API_WRONG_CREDENTIALS:
+
+            info('sinfo', getErrorString(result.error), 4);
             $('cp_password').setValue("");
             $('cp_password').shake();
+            break;
+
+        // Else show a info message
+        default:
+            info('sinfo', getErrorString(result.error), 4);
+            $('change_password').reset();
+            $('change_password').shake();
             break;
     }
 }
@@ -94,13 +97,26 @@ function deleteAccount(){
 
 // delete account ajax callback
 function checkDeleteAccount(result){
-    if (result.error == CL_NO_ERROR){
-        // account was deleted, load login page
-        openLogin();
-    } else {
-        // show any other error message
-        info('sinfo', error_messages[result.error], 4);
-        $('da_password').setValue("");
-        $('da_password').shake();
+    switch (result.error){
+        // If no error, show login page
+        case API_NO_ERROR:
+        // If not logged in, show login page
+        case API_NOT_LOGGEDIN:
+            openLogin();
+            break;
+
+        // Provided actual password was wrong
+        case API_WRONG_CREDENTIALS:
+            info('sinfo', getErrorString(result.error), 4);
+            $('da_password').setValue("");
+            $('da_password').shake();
+            break;
+
+        // Else show a info message
+        default:
+            info('sinfo', getErrorString(result.error), 4);
+            $('delete_account').reset();
+            $('delete_account').shake();
+            break;
     }
 }

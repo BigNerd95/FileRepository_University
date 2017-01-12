@@ -6,19 +6,18 @@ var LOG_DEBUG = '[DEBUG]:';
 var USER_FUNCTIONS = 'API/user/';
 var FILE_FUNCTIONS = 'API/file/';
 
-const CL_NO_ERROR = "NO_ERROR";
-const CL_NOT_LOGGEDIN = "NOT_LOGGEDIN";
-const CL_ALREADY_LOGGEDIN = "ALREADY_LOGGEDIN";
+const API_NO_ERROR = "NO_ERROR";
+const API_NOT_LOGGEDIN = "NOT_LOGGEDIN";
+const API_ALREADY_LOGGEDIN = "ALREADY_LOGGEDIN";
+const API_MISSING_PARAMETER = "MISSING_PARAMETER";
+const API_WRONG_CREDENTIALS = "WRONG_CREDENTIALS";
+const API_USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
+const API_REGISTRATION_FAILED = "REGISTRATION_FAILED";
+const API_FAILED_ACTION = "FAILED_ACTION";
+const API_UNKNOWN_ACTION = "UNKNOWN_ACTION";
+const API_DB_ERROR = "DB_ERROR";
 
-const CL_MISSING_PARAMETER = "MISSING_PARAMETER";
-const CL_WRONG_CREDENTIALS = "WRONG_CREDENTIALS";
-const CL_USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
-const CL_REGISTRATION_FAILED = "REGISTRATION_FAILED";
-const CL_FAILED_ACTION = "FAILED_ACTION";
-const CL_UNKNOWN_ACTION = "UNKNOWN_ACTION";
-const CL_DB_ERROR = "DB_ERROR";
-
-const error_messages_en = {
+const error_strings_en = {
     ALREADY_LOGGEDIN: "You are already logged in!",
     NOT_LOGGEDIN: "You are not logged in!",
     NO_ERROR: "No error",
@@ -31,7 +30,7 @@ const error_messages_en = {
     DB_ERROR: "Database error!"
 }
 
-const error_messages_it = {
+const error_strings_it = {
     ALREADY_LOGGEDIN: "Sei già loggato!",
     NOT_LOGGEDIN: "Non sei loggato!",
     NO_ERROR: "Nessun errore",
@@ -47,17 +46,63 @@ const error_messages_it = {
 
 const locale_strings_en = {
     UNKNOWN_ERROR: "Unknown error",
-    PASSWORD_CHANGED: "Password changed!"
+    SERVER_ERROR: "Server error",
+    PASSWORD_CHANGED: "Password changed!",
+    NO_FILES: "No files",
+    DRAG_FILES: "Drag and drop new files on the arrow",
+    FILES_BUTTON: "Files",
+    SETTINGS_BUTTON: "Settings",
+    LOGOUT_BUTTON: "Logout",
+    CHANGE_PASSWORD_BUTTON: "Change password",
+    DELETE_ACCOUNT_BUTTON: "Delete account",
+    USERNAME_FIELD: "Username",
+    PASSWORD_FIELD: "Password",
+    NEW_PASSWORD_FIELD: "New password",
+    RETYPE_NEW_PASSWORD_FIELD: "Retype new password",
+    DELETE_ACCOUNT_WARNING: "This action is irreversible!",
+    DELETE_FILE_TITLE: "Drag and drop a file here to delete",
+    SELECT_FILE_TITLE: "Drag and drop a new file here to upload",
+    DOWNLOAD_FILE_TITLE: "Double click to download",
+    LOGIN_BUTTON: "Login",
+    REGISTER_BUTTON: "Register"
 }
 
 const locale_strings_it = {
     UNKNOWN_ERROR: "Errore sconosciuto",
-    PASSWORD_CHANGED: "Password cambiata!"
+    SERVER_ERROR: "Errore del server",
+    PASSWORD_CHANGED: "Password cambiata!",
+    NO_FILES: "Nessun file",
+    DRAG_FILES: "Trascina nuovi file sulla freccia",
+    FILES_BUTTON: "File",
+    SETTINGS_BUTTON: "Impostazioni",
+    LOGOUT_BUTTON: "Esci",
+    CHANGE_PASSWORD_BUTTON: "Cambia password",
+    DELETE_ACCOUNT_BUTTON: "Cancella account",
+    USERNAME_FIELD: "Nome utente",
+    PASSWORD_FIELD: "Password",
+    NEW_PASSWORD_FIELD: "Nuova password",
+    RETYPE_NEW_PASSWORD_FIELD: "Riscrivi la nuova password",
+    DELETE_ACCOUNT_WARNING: "Questa azione è irreversibile!",
+    DELETE_FILE_TITLE: "Trascina un file qui per eliminarlo",
+    SELECT_FILE_TITLE: "Trascina un nuovo file qui per caricarlo",
+    DOWNLOAD_FILE_TITLE: "Fai doppio click per scaricarlo",
+    LOGIN_BUTTON: "Accedi",
+    REGISTER_BUTTON: "Registrati"
 }
 
-error_messages = error_messages_en;
-locale_strings = locale_strings_it;
+var languages = {
+    'it': {
+        error: error_strings_it,
+        locale: locale_strings_it
+    },
+    'en': {
+        error: error_strings_en,
+        locale: locale_strings_en
+    }
+};
 
+window.error_strings = error_strings_en;
+window.locale_strings = locale_strings_en;
 
 function ajaxFailure(){
     console.log("Errore ajax");
@@ -73,27 +118,37 @@ function sendAjax(url, callback, params){
             console.log(LOG_DEBUG, response.responseJSON);
             callback(response.responseJSON);
         },
-        onFailure: ajaxFailure//,
-        //onException: ajaxFailure
+        onFailure: function(){
+            callback();
+        }
     });
 }
 
-function getErrorMessage(error){
-    var message = error_messages[error];
+function getErrorString(error){
+    var message = error_strings[error];
     if (message == undefined)
         return locale_strings['UNKNOWN_ERROR'];
     else
         return message;
 }
 
+function getString(stringid){
+    var string = locale_strings[stringid];
+    if (string == undefined)
+        return stringid;
+    else
+        return string;
+}
+
 function checkStatus(){
     sendAjax(USER_FUNCTIONS+'status.php', showPage);
 }
 
-function showPage(result){
-    if (result.error == 0){
-        alert('logged in as: '+result.username);
-    } else {
-        alert("not logged in");
+function setLanguage(){
+    var lanid = navigator.language.substring(0,2);
+    var lan = languages[lanid];
+    if (lan != undefined){
+        window.error_strings = lan.error;
+        window.locale_strings = lan.locale;
     }
 }

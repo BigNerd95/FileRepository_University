@@ -81,6 +81,10 @@ function availableUsername(username){
     sendAjax(USER_FUNCTIONS+'available.php',
         // anonymous callback
         function(result){
+            if (result == undefined){
+                $('registeruser').removeClassName('errorField');
+                return;
+            }
             if (result.error == API_USER_ALREADY_EXISTS){
                 $('registeruser').addClassName('errorField');
                 info('cinfo', getErrorString(result.error));

@@ -64,7 +64,8 @@ const locale_strings_en = {
     SELECT_FILE_TITLE: "Drag and drop a new file here to upload",
     DOWNLOAD_FILE_TITLE: "Double click to download",
     LOGIN_BUTTON: "Login",
-    REGISTER_BUTTON: "Register"
+    REGISTER_BUTTON: "Register",
+    WELCOME_TITLE: "Welcome"
 }
 
 const locale_strings_it = {
@@ -87,7 +88,8 @@ const locale_strings_it = {
     SELECT_FILE_TITLE: "Trascina un nuovo file qui per caricarlo",
     DOWNLOAD_FILE_TITLE: "Fai doppio click per scaricarlo",
     LOGIN_BUTTON: "Accedi",
-    REGISTER_BUTTON: "Registrati"
+    REGISTER_BUTTON: "Registrati",
+    WELCOME_TITLE: "Benvenuto"
 }
 
 var languages = {

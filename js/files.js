@@ -175,11 +175,18 @@ function uploadFile(file){
         */
     }
 
+    // RANDOM STRING: (new Date().getTime()).toString(36)
+
     /*req.onreadystatechange = function(event){
         console.log('change:', event);
     }*/
-    req.upload.onprogress = function(a){
-        console.log("progress: ", a);
+    console.log(req);
+    req.upload.onprogress = function(event){
+        console.log("progress: ", event);
+        if (event.lengthComputable){
+            $('test_progress').max=event.total;
+            $('test_progress').value=event.loaded;
+        }
     }
 
     req.send(data);

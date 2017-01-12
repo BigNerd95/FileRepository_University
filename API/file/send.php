@@ -9,7 +9,7 @@
 	ini_set('max_input_time', 300);
 	ini_set('max_execution_time', 300);
 
-	print(ini_get('upload_max_filesize'));
+	//print(ini_get('upload_max_filesize'));
 
 	# Include Communication Library
 	require_once('../CommLib.php');

@@ -31,6 +31,7 @@
 	<body>
 
 		<div id="header">
+			<div id="title"></div>
 			<div id="topbar" class="rounded">
 					<a id="files_btn">Files</a>
 					<a id="settings_btn">Settings</a>
@@ -38,13 +39,21 @@
 			</div>
 		</div>
 
-		<div id="files" class="rounded centered">
-			<div id="btns_file">
-				<div id="select_file"></div>
-				<div id="info_file"></div>
-				<div id="delete_file" title="Drag and drop a file to delete"></div>
+		<div id="files">
+			<div id="manager_file" class="rounded centered">
+				<div id="btns_file">
+					<div id="select_file"></div>
+					<div id="info_file"></div>
+					<div id="delete_file" title="Drag and drop a file to delete"></div>
+				</div>
+				<div id="list_file" class="roundedbottom">
+				</div>
 			</div>
-			<div id="list_file" class="roundedbottom">
+			<div id="transfer_file" class="rounded centered">
+				<span>Transfer</span>
+				<ul id="list_transfer">
+					<progress type="progress" id="test_progress"></progress>
+				</ul>
 			</div>
 		</div>
 

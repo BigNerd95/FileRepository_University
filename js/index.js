@@ -3,9 +3,7 @@
 TODO:
 - upload progress (magari far apparire sotto la list view le progress bar)
 - unificare funzioni check file php
-- aggiungere nome utente in alto nella pagina index
 - controllare lunghezza username e password sia su js che php e caratteri speciali
-- aggiungere caso errore ajax, se result e' undefined
 */
 
 
@@ -19,6 +17,7 @@ document.observe("dom:loaded", function(){
 
 // attach events callback to page elements
 function initElements(){
+    initTitle();
     initTopBar();
     initSelectFile();
     initDeleteFile();
@@ -64,6 +63,31 @@ function showSettings(){
     $('settings').show();
 
     showChangePassword();
+}
+
+function initTitle(){
+    sendAjax(USER_FUNCTIONS+'status.php', function(result){
+        if (result == undefined){
+            $('title').update(getString('WELCOME_TITLE'));
+            return;
+        }
+        switch (result.error){
+            // If no error, show welcome username
+            case API_NO_ERROR:
+                $('title').update(getString('WELCOME_TITLE')+' '+result.username.escapeHTML());
+                break;
+
+            // If not logged in, show login page
+            case API_NOT_LOGGEDIN:
+                openLogin();
+                break;
+
+            // Else show welcome only
+            default:
+                $('title').update(getString('WELCOME_TITLE'));
+                break;
+        }
+    });
 }
 
 // Init topbar buttons

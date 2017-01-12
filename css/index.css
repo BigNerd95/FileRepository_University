@@ -9,7 +9,7 @@ body {
 #header {
 	text-align: center;
 	margin: 40px;
-	display: flex;
+	position: relative;
 }
 
 #footer {
@@ -17,11 +17,18 @@ body {
 	margin: 40px;
 }
 
-
 #topbar {
-	::min-width: 700px;
-	margin: 0 auto;
+	display: inline-block;
+	background-color: blue;
 	box-shadow: 0px 0px 10px rgba(0,0,0,1);
+}
+
+#title {
+	height: 30px;
+	line-height: 30px;
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 30px;
 }
 
 #topbar a {
@@ -75,7 +82,7 @@ body {
 * FILES *
 ********/
 
-#files {
+#manager_file {
 	background-color: #0c9256;
 	margin: auto;
 	width: 80%;
@@ -190,6 +197,15 @@ body {
 	overflow: hidden;
 }
 
+#transfer_file{
+	background-color: #0c9256;
+	width: 80%;
+	height: 300px;
+	font-size: 30px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,1);
+	position: relative;
+	margin-top: 20px;
+}
 
 /***********
 * SETTINGS *

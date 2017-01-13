@@ -207,6 +207,19 @@ body {
 	margin-top: 20px;
 }
 
+#transfer_file progress {
+	clear: both;
+	height: 10px;
+}
+/*https://stackoverflow.com/questions/7190898/progress-bar-with-html-and-css*/
+
+.cancel_upload {
+	background-color: red;
+	height: 30px;
+	width: 30px;
+	float: left;
+}
+
 /***********
 * SETTINGS *
 ***********/

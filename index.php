@@ -52,7 +52,8 @@
 			<div id="transfer_file" class="rounded centered">
 				<span>Transfer</span>
 				<ul id="list_transfer">
-					<progress type="progress" id="test_progress"></progress>
+					<li>asd<progress type="progress" id="test_progress"></progress></li>
+					<li>qwe<progress type="progress" id="test_progress2"></progress></li>
 				</ul>
 			</div>
 		</div>

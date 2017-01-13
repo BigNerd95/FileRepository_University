@@ -20,3 +20,8 @@ function info(id, message, seconds){
         }, seconds*1000);
     }
 }
+
+function genUniqueString(){
+    //Date.now().toString(36)
+    return Math.random().toString(36).substring(2);
+}

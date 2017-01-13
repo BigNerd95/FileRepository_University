@@ -166,41 +166,45 @@ function uploadFile(file){
     // Make an ajax request with browser primitive function, with Prototype it is not working
     var req = new XMLHttpRequest();
     req.open("post", FILE_FUNCTIONS+'send.php');
+
+    var item = new Element('li');
+    var bar = new Element('progress');
+    var cancel = new Element('div', {
+        'class': 'cancel_upload'
+    });
+    var percent = new Element('span');
+    cancel.on('click', function(event, element){
+        req.abort();
+        item.remove();
+    });
+    item.insert(file.name.escapeHTML());
+    item.insert(bar);
+    item.insert(cancel);
+    item.insert(percent);
+    $('list_transfer').insert(item);
+
     // On load callback
     req.onload = function(event){
+
         listFiles(); // Reload files list
+        item.remove();
+
         //console.log(req.responseText);
         /*
         AGGIUNGERE SWITCH ERRORE CON MESSAGGIO info
         */
     }
 
-    // RANDOM STRING: (new Date().getTime()).toString(36)
-
-    /*req.onreadystatechange = function(event){
-        console.log('change:', event);
-    }*/
     console.log(req);
     req.upload.onprogress = function(event){
         console.log("progress: ", event);
         if (event.lengthComputable){
-            $('test_progress').max=event.total;
-            $('test_progress').value=event.loaded;
+            bar.max = event.total;
+            bar.value = event.loaded;
+            var uploaded_percent = parseInt(event.loaded/event.total*100);
+            percent.update(uploaded_percent + "%");
         }
     }
 
     req.send(data);
-
-    /*
-    // Prototype implementation not working
-    new Ajax.Request(FILE_FUNCTIONS+'send.php', {
-        method: "post",
-        postBody: data,
-        onSuccess: function(response) {
-            console.log(LOG_DEBUG, response.responseText);
-            //callback(response.responseJSON);
-        },
-        onFailure: ajaxFailure
-    });
-    */
 }

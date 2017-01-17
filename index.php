@@ -52,8 +52,8 @@
 			<div id="transfer_file" class="rounded centered">
 				<span id="title_transfer">Transfers</span>
 				<ul id="list_transfer">
-					<!--li><span>file.txt</span><div class="meter"><span ></span></div></li>
-					<li><span>fileuebdeuybdyewudbweuydbweuybewuybeuydbuybdwuyb.txt</span><div class="meter"><span style="width: 25%"></span></div></li-->
+					<!--li><div class="name"><span>file.txt</span></div><div class="meter"><span></span></div><div class="cancel_upload"></div></li>
+					<li><div class="name"><span>fileuebdeuybdyewudbweuydbweuybewuybeuydbuybdwuyb.txt</span></div><div class="meter"><span style="width: 25%"></span></div></li-->
 				</ul>
 
 			</div>

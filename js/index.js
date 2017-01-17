@@ -127,11 +127,15 @@ function initSelectFile(){
         element.removeClassName('upload');
         element.removeClassName('highlight');
         //console.log(event.dataTransfer.files);
-        if (event.dataTransfer.files.length == 1){
-            uploadFile(event.dataTransfer.files[0]);
+
+        if (event.dataTransfer.files.length > 0){
+            for(var i=0; i<event.dataTransfer.files.length; i++){
+                uploadFile(event.dataTransfer.files[i]);
+            }
         } else {
             element.shake();
         }
+
     });
 
     $('select_file').on('click', function(event, element){
@@ -184,8 +188,12 @@ function initTransfers(){
 function transferShowHide(){
     if ($$('#list_transfer li').length > 0){
         $('transfer_file').show();
+        //if (!$('transfer_file').visible())
+        //    $('transfer_file').slideDown();
     } else {
         $('transfer_file').hide();
+        //if ($('transfer_file').visible())
+        //    $('transfer_file').slideUp();
     }
 }
 

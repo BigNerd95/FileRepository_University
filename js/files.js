@@ -173,8 +173,12 @@ function uploadFile(file){
     */
 
     var item = new Element('li');
-    var label = new Element('span');
-    label.insert(file.name.escapeHTML());
+    var label = new Element('div', {
+        'class': 'name'
+    });
+    var labeltext = new Element('span');
+    labeltext.update(file.name.escapeHTML()); // insert?
+    label.insert(labeltext);
     var progress = new Element('div', {
         'class': 'meter'
     });
@@ -183,10 +187,7 @@ function uploadFile(file){
         'width': '0%'
     });
     progress.insert(bar);
-    item.insert(label);
-    item.insert(progress);
 
-    /*
     var cancel = new Element('div', {
         'class': 'cancel_upload'
     });
@@ -195,8 +196,11 @@ function uploadFile(file){
         item.remove();
         transferShowHide();
     });
-    */
 
+
+    item.insert(label);
+    item.insert(progress);
+    item.insert(cancel);
     $('list_transfer').insert(item);
     transferShowHide();
 

@@ -21,7 +21,7 @@ function initElements(){
     initTopBar();
     initSelectFile();
     initDeleteFile();
-    transferShowHide();
+    initTransfers();
     initSettings();
 }
 
@@ -174,6 +174,19 @@ function initDeleteFile() {
             element.shake();
         }
     });
+}
+
+function initTransfers(){
+    $('title_transfer').update(getString('TRANSFERS_FILE_TITLE'));
+    transferShowHide();
+}
+
+function transferShowHide(){
+    if ($$('#list_transfer li').length > 0){
+        $('transfer_file').show();
+    } else {
+        $('transfer_file').hide();
+    }
 }
 
 // Init settins buttons

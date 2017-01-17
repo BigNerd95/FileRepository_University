@@ -238,11 +238,3 @@ function uploadFile(file){
 
     req.send(data);
 }
-
-function transferShowHide(){
-    if ($$('#list_transfer li').length > 0){
-        $('transfer_file').show();
-    } else {
-        $('transfer_file').hide();
-    }
-}

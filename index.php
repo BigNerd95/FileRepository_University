@@ -50,11 +50,12 @@
 				</div>
 			</div>
 			<div id="transfer_file" class="rounded centered">
-				<span>Transfer</span>
+				<span id="title_transfer">Transfers</span>
 				<ul id="list_transfer">
-					<li>asd<progress type="progress" id="test_progress"></progress></li>
-					<li>qwe<progress type="progress" id="test_progress2"></progress></li>
+					<!--li><span>file.txt</span><div class="meter"><span ></span></div></li>
+					<li><span>fileuebdeuybdyewudbweuydbweuybewuybeuydbuybdwuyb.txt</span><div class="meter"><span style="width: 25%"></span></div></li-->
 				</ul>
+
 			</div>
 		</div>
 

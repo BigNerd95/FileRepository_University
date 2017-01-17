@@ -167,27 +167,45 @@ function uploadFile(file){
     var req = new XMLHttpRequest();
     req.open("post", FILE_FUNCTIONS+'send.php');
 
+
+    /*
+    <li><span>file.txt</span><div class="meter"><span style="width: 25%"></span></div></li>
+    */
+
     var item = new Element('li');
-    var bar = new Element('progress');
+    var label = new Element('span');
+    label.insert(file.name.escapeHTML());
+    var progress = new Element('div', {
+        'class': 'meter'
+    });
+    var bar = new Element('span');
+    bar.setStyle({
+        'width': '0%'
+    });
+    progress.insert(bar);
+    item.insert(label);
+    item.insert(progress);
+
+    /*
     var cancel = new Element('div', {
         'class': 'cancel_upload'
     });
-    var percent = new Element('span');
     cancel.on('click', function(event, element){
         req.abort();
         item.remove();
+        transferShowHide();
     });
-    item.insert(file.name.escapeHTML());
-    item.insert(bar);
-    item.insert(cancel);
-    item.insert(percent);
+    */
+
     $('list_transfer').insert(item);
+    transferShowHide();
 
     // On load callback
     req.onload = function(event){
 
         listFiles(); // Reload files list
         item.remove();
+        transferShowHide();
 
         //console.log(req.responseText);
         /*
@@ -195,16 +213,36 @@ function uploadFile(file){
         */
     }
 
-    console.log(req);
+    //console.log(req);
     req.upload.onprogress = function(event){
-        console.log("progress: ", event);
+        //console.log("progress: ", event);
         if (event.lengthComputable){
-            bar.max = event.total;
-            bar.value = event.loaded;
             var uploaded_percent = parseInt(event.loaded/event.total*100);
-            percent.update(uploaded_percent + "%");
+            bar.setStyle({
+                'width': uploaded_percent+'%'
+            });
+        } else {
+            bar.setStyle({
+                'width': '50%'
+            });
+            // highlight progressbar while uploading if length is not computable
+            if (bar.highlighted == undefined){
+                bar.highlighted = 1;
+                setTimeout(function(){
+                    bar.highlighted = undefined;
+                }, 2000);
+                bar.highlight({duration: 2});
+            }
         }
     }
 
     req.send(data);
+}
+
+function transferShowHide(){
+    if ($$('#list_transfer li').length > 0){
+        $('transfer_file').show();
+    } else {
+        $('transfer_file').hide();
+    }
 }

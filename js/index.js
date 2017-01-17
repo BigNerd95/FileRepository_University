@@ -1,7 +1,7 @@
 
 /*
 TODO:
-- upload progress (magari far apparire sotto la list view le progress bar)
+- cancel upload
 - unificare funzioni check file php
 - controllare lunghezza username e password sia su js che php e caratteri speciali
 */
@@ -21,6 +21,7 @@ function initElements(){
     initTopBar();
     initSelectFile();
     initDeleteFile();
+    transferShowHide();
     initSettings();
 }
 

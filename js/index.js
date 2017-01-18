@@ -182,18 +182,23 @@ function initDeleteFile() {
 
 function initTransfers(){
     $('title_transfer').update(getString('TRANSFERS_FILE_TITLE'));
+    $('transfer_file').hide();
     transferShowHide();
 }
 
 function transferShowHide(){
     if ($$('#list_transfer li').length > 0){
         $('transfer_file').show();
-        //if (!$('transfer_file').visible())
-        //    $('transfer_file').slideDown();
+        /*if (!$('transfer_file').visible()){
+            //$('transfer_file').blindDown({duration: 0.5});
+            $('transfer_file').appear({duration: 0.5});
+        }*/
     } else {
         $('transfer_file').hide();
-        //if ($('transfer_file').visible())
-        //    $('transfer_file').slideUp();
+        /*if ($('transfer_file').visible()){
+            //$('transfer_file').blindUp({duration: 0.5});
+            $('transfer_file').fade({duration: 0.5});
+        }*/
     }
 }
 

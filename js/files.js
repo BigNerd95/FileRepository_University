@@ -188,48 +188,70 @@ function uploadFile(file){
     });
     progress.insert(bar);
 
-    var cancel = new Element('div', {
-        'class': 'cancel_upload'
+    var button = new Element('div', {
+        'class': 'button_upload'
     });
-    cancel.on('click', function(event, element){
-        req.abort();
-        item.remove();
-        transferShowHide();
+    button.addClassName('cancel_upload');
+    button.on('click', function(event, element){
+        if (element.hasClassName('cancel_upload')){
+            req.abort();
+            item.remove();
+            transferShowHide();
+        }
     });
 
-
+    // insert new upload item in transfer list
     item.insert(label);
     item.insert(progress);
-    item.insert(cancel);
+    item.insert(button);
     $('list_transfer').insert(item);
-    transferShowHide();
+    transferShowHide(); // check if transfer list must be displayed
+
+    // upload end callback, set the result on the button
+    item.removeItem = function(result){
+        button.removeClassName('cancel_upload');
+        button.addClassName(result);
+        setTimeout(function(){
+            item.remove();
+            transferShowHide();
+        }, 3000);
+    }
 
     // On load callback
     req.onload = function(event){
 
-        listFiles(); // Reload files list
-        item.remove();
-        transferShowHide();
+        var response = JSON.parse(req.responseText);
 
-        //console.log(req.responseText);
-        /*
-        AGGIUNGERE SWITCH ERRORE CON MESSAGGIO info
-        */
+        if (response.error == API_NO_ERROR){
+            listFiles(); // Reload files list
+            item.removeItem('success_upload');
+        } else {
+            item.removeItem('error_upload');
+        }
+
+        //console.log(JSON.parse(req.responseText));
+    }
+
+    req.onerror = function(event){
+        item.removeItem('error_upload');
     }
 
     //console.log(req);
     req.upload.onprogress = function(event){
         //console.log("progress: ", event);
+        transferShowHide();
         if (event.lengthComputable){
+            // if length is computable, update the percent of the eprogress bar
             var uploaded_percent = parseInt(event.loaded/event.total*100);
             bar.setStyle({
                 'width': uploaded_percent+'%'
             });
         } else {
+            // if length is not computable, set the progress bar at 50% and start blinking it
             bar.setStyle({
                 'width': '50%'
             });
-            // highlight progressbar while uploading if length is not computable
+            // blink progressbar while uploading if length is not computable
             if (bar.highlighted == undefined){
                 bar.highlighted = 1;
                 setTimeout(function(){

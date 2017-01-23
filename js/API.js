@@ -3,9 +3,11 @@ var DEBUG = false;
 var LOG_INFO  = '[INFO]:';
 var LOG_DEBUG = '[DEBUG]:';
 
+// API functions url
 var USER_FUNCTIONS = 'API/user/';
 var FILE_FUNCTIONS = 'API/file/';
 
+// API error list
 const API_NO_ERROR = "NO_ERROR";
 const API_NOT_LOGGEDIN = "NOT_LOGGEDIN";
 const API_ALREADY_LOGGEDIN = "ALREADY_LOGGEDIN";
@@ -17,6 +19,7 @@ const API_FAILED_ACTION = "FAILED_ACTION";
 const API_UNKNOWN_ACTION = "UNKNOWN_ACTION";
 const API_DB_ERROR = "DB_ERROR";
 
+// API error translation
 const error_strings_en = {
     ALREADY_LOGGEDIN: "You are already logged in!",
     NOT_LOGGEDIN: "You are not logged in!",
@@ -43,7 +46,7 @@ const error_strings_it = {
     DB_ERROR: "Errore nel database!"
 }
 
-
+// string translation
 const locale_strings_en = {
     UNKNOWN_ERROR: "Unknown error",
     SERVER_ERROR: "Server error",

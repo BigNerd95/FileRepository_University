@@ -26,6 +26,7 @@
 			json_response(API_REGISTRATION_FAILED);
 		}
 
+		# Automatically login the new user
 		login($userid, $username);
 	}
 

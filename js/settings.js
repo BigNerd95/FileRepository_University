@@ -38,7 +38,7 @@ function changePassword(){
     if (password && newpassword && newpassword2){
         if (newpassword == newpassword2){
             // send ajax request to change password
-            sendAjax(USER_FUNCTIONS+'edit.php', checkChangePassword, {
+            sendAjax(USER_FUNCTIONS+'edit.php', changePasswordCallback, {
                 password: password,
                 action: 'editPassword',
                 newPassword: newpassword
@@ -51,7 +51,7 @@ function changePassword(){
 }
 
 // change password ajax callback
-function checkChangePassword(result){
+function changePasswordCallback(result){
     switch (result.error){
         // If no error, show feedback "password changed"
         case API_NO_ERROR:
@@ -88,7 +88,7 @@ function deleteAccount(){
 
     if (password){
         // send ajax request to delete account
-        sendAjax(USER_FUNCTIONS+'edit.php', checkDeleteAccount, {
+        sendAjax(USER_FUNCTIONS+'edit.php', deleteAccountCallback, {
             password: password,
             action: 'deleteAccount'
         });
@@ -96,7 +96,7 @@ function deleteAccount(){
 }
 
 // delete account ajax callback
-function checkDeleteAccount(result){
+function deleteAccountCallback(result){
     switch (result.error){
         // If no error, show login page
         case API_NO_ERROR:

@@ -33,7 +33,7 @@ function listFilesFromArray(files){
     // Empty the list (remove both list and message in files list)
     $('list_file').update();
 
-    // If there are files
+    // If there are files show them
     if (files.length > 0) {
         $('delete_file').show(); // show the trash icon
         info('info_file');       // Remove the info message
@@ -49,10 +49,10 @@ function listFilesFromArray(files){
 
             // Double click handler
             item.on('dblclick', function(event, element){
-                downloadFile(element.innerHTML);
+                downloadFile(element.innerHTML.unescapeHTML()); // download file on double click
             });
 
-            // Drag handler
+            // Drag handler (to delete file)
             item.draggable = true;
             item.on('dragstart', function(event, element){
                 event.dataTransfer.setData('filename', element.innerHTML.unescapeHTML()); // Recover original file name
@@ -74,7 +74,7 @@ function listFilesFromArray(files){
             list.insert(item); // Add list item to list
         });
     } else {
-    // If there are NO files
+    // If there are NO files show info message
         $('delete_file').hide(); // Hide trash icon
         $('list_file').insert(new Element('span').update(getString('NO_FILES')));  // Show message in files list
         info('info_file', getString('DRAG_FILES'));      // Show info message

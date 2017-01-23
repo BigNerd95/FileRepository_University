@@ -39,7 +39,7 @@
 
 	# Check if the user is authenticated
 	if (!isUserLoggedin())
-		json_response(API_NOT_AUTHENTICATED);
+		json_response(API_NOT_LOGGEDIN);
 
 
 	if (!isset($_FILES['file']))

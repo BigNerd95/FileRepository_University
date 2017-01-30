@@ -21,6 +21,7 @@
 		return $dir.$filename;
 	}
 
+	# Check if file name already exists and create a new one with a counter
 	function checkFilename($dir, $name){
 		$file = pathinfo($name);
 		$filename = $file['filename'];
@@ -34,8 +35,6 @@
 	}
 
 	session_start();
-
-	//print_r($_FILES);
 
 	# Check if the user is authenticated
 	if (!isUserLoggedin())

@@ -19,5 +19,7 @@
 	else
 		print  "no";*/
 
-	echo md5("test");
+	#echo md5("test");
+	mkdir(PROJECT_BASE_DIR.'/asdsadadaddaadsasd/asdada', 0777, true);
+
 ?>

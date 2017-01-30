@@ -74,6 +74,16 @@
 		return $name;
 	}
 
+	function filePath($name){
+		$userdir = $_SESSION['userid'];
+		return PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$userdir.'/'.$name;
+	}
+
+	function check_file($name){
+		$path = filePath($name);
+		return file_exists($path);
+	}
+
 	function json_response($error_code, $keyvalues = []) {
 		$response = array();
 		$response['error'] = $error_code;

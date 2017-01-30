@@ -6,16 +6,6 @@
 
 	require_once('../CommLib.php');
 
-	function filePath($name){
-		$userdir = $_SESSION['userid'];
-		return PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$userdir.'/'.$name;
-	}
-
-	function check_file($name){
-		$path = filePath($name);
-		return file_exists($path);
-	}
-
 	session_start();
 
 	if (!isUserLoggedin())

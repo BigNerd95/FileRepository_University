@@ -47,5 +47,3 @@ function openLogin(){
 function openIndex(){
     window.location.assign("."); // index.html / index.php
 }
-
-// http://api.prototypejs.org/dom/Form/

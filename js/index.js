@@ -1,11 +1,4 @@
 
-/*
-TODO:
-- unificare funzioni check file php
-- controllare lunghezza username e password sia su js che php e caratteri speciali
-*/
-
-
 // init function when page is loaded
 document.observe("dom:loaded", function(){
     setLanguage();

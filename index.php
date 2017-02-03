@@ -22,6 +22,7 @@
 		<script src="js/prototype.js" type="text/javascript"></script>
 		<script src="js/scriptaculous/scriptaculous.js" type="text/javascript"></script>
 
+		<script src="js/localization.js" type="text/javascript"></script>
 		<script src="js/API.js" type="text/javascript"></script>
 		<script src="js/commons.js" type="text/javascript"></script>
 		<script src="js/files.js" type="text/javascript"></script>

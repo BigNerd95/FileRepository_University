@@ -41,14 +41,18 @@
 	}
 
 	function checkUserValidity($username){
-		if (strlen($username) < 4 || strlen($username) > 20){
-			json_response(API_INVALID_USERNAME, ['min' => 4, 'max' => 20]);
+		$min = 4;
+		$max = 20;
+		if (strlen($username) < $min || strlen($username) > $max){
+			json_response(API_INVALID_USERNAME, ['min' => $min, 'max' => $max]);
 		}
 	}
 
 	function checkPassValidity($password){
-		if (strlen($password) < 8 || strlen($password) > 20){
-			json_response(API_INVALID_PASSWORD, ['min' => 8, 'max' => 20]);
+		$min = 8;
+		$max = 20;
+		if (strlen($password) < $min || strlen($password) > $max){
+			json_response(API_INVALID_PASSWORD, ['min' => $min, 'max' => $max]);
 		}
 	}
 

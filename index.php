@@ -67,15 +67,15 @@
 
 			<div id="sbody">
 				<form id="change_password">
-					<input type="password" maxlength="20" placeholder="Password" class="rounded" id="cp_password" required>
-					<input type="password" maxlength="20" placeholder="New Password" class="rounded" id="cp_new_password" required>
-					<input type="password" maxlength="20" placeholder="Retype new password" class="rounded" id="cp_new_password_2" required>
+					<input type="password" minlength="8" maxlength="20" placeholder="Password" class="rounded" id="cp_password" required>
+					<input type="password" minlength="8" maxlength="20" placeholder="New Password" class="rounded" id="cp_new_password" required>
+					<input type="password" minlength="8" maxlength="20" placeholder="Retype new password" class="rounded" id="cp_new_password_2" required>
 					<input type="submit" class="rounded" id="cp_submit" value="Change password">
 				</form>
 
 				<form id="delete_account" >
 					<span id="da_warning">This action is irreversible!</span>
-					<input type="password" maxlength="20" placeholder="Password" class="rounded" id="da_password" required>
+					<input type="password" minlength="8" maxlength="20" placeholder="Password" class="rounded" id="da_password" required>
 					<input type="submit" class="rounded warning" id="da_submit" value="Delete account">
 				</form>
 

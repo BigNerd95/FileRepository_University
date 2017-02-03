@@ -35,6 +35,15 @@ function changePassword(){
     var newpassword = getFormValue('cp_new_password');
     var newpassword2 = getFormValue('cp_new_password_2');
 
+    // check new password length
+    if ( !isValueInRange(newpassword, 8, 20, 'sinfo', getString('NEW_PASS_INVALID')) ){
+        $('cp_new_password').setValue("");
+        $('cp_new_password').shake();
+        $('cp_new_password_2').setValue("");
+        $('cp_new_password_2').shake();
+        return;
+    }
+
     if (password && newpassword && newpassword2){
         if (newpassword == newpassword2){
             // send ajax request to change password
@@ -44,6 +53,7 @@ function changePassword(){
                 newPassword: newpassword
             });
         } else {
+            info('sinfo', getString('NEW_PASS_DIFFERS') , 4);
             $('cp_new_password_2').setValue("");
             $('cp_new_password_2').shake();
         }
@@ -66,10 +76,17 @@ function changePasswordCallback(result){
 
         // Provided actual password was wrong
         case API_WRONG_CREDENTIALS:
-
             info('sinfo', getErrorString(result.error), 4);
             $('cp_password').setValue("");
             $('cp_password').shake();
+            break;
+
+        case API_INVALID_PASSWORD:
+            info('sinfo', getString('NEW_PASS_INVALID') + '<br>' +
+                getString('MIN_LENGTH') + ': ' + result.min + '<br>' +
+                getString('MAX_LENGTH') + ': ' + result.max, 4);
+            $('change_password').reset();
+            $('change_password').shake();
             break;
 
         // Else show a info message

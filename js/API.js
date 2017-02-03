@@ -11,13 +11,19 @@ var FILE_FUNCTIONS = 'API/file/';
 const API_NO_ERROR = "NO_ERROR";
 const API_NOT_LOGGEDIN = "NOT_LOGGEDIN";
 const API_ALREADY_LOGGEDIN = "ALREADY_LOGGEDIN";
+
 const API_MISSING_PARAMETER = "MISSING_PARAMETER";
 const API_WRONG_CREDENTIALS = "WRONG_CREDENTIALS";
 const API_USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
 const API_REGISTRATION_FAILED = "REGISTRATION_FAILED";
 const API_FAILED_ACTION = "FAILED_ACTION";
 const API_UNKNOWN_ACTION = "UNKNOWN_ACTION";
+const API_UPLOAD_FAILED = "UPLOAD_FAILED";
+const API_INVALID_DIRECTORY = "INVALID_DIRECTORY";
 const API_DB_ERROR = "DB_ERROR";
+const API_FILE_NOT_FOUND = "FILE_NOT_FOUND";
+const API_INVALID_USERNAME = "INVALID_USERNAME";
+const API_INVALID_PASSWORD = "INVALID_PASSWORD";
 
 // API error translation
 const error_strings_en = {
@@ -30,7 +36,12 @@ const error_strings_en = {
     REGISTRATION_FAILED: "Registration failed!",
     FAILED_ACTION: "Action failed!",
     UNKNOWN_ACTION: "Action unknown!",
-    DB_ERROR: "Database error!"
+    UPLOAD_FAILED: "Upload failed!",
+    INVALID_DIRECTORY: "Invalid directory!",
+    DB_ERROR: "Database error!",
+    FILE_NOT_FOUND: "File not found!",
+    INVALID_USERNAME: "Invalid username!",
+    INVALID_PASSWORD: "Invalid password!"
 }
 
 const error_strings_it = {
@@ -43,7 +54,12 @@ const error_strings_it = {
     REGISTRATION_FAILED: "Registrazione fallita!",
     FAILED_ACTION: "Azione fallita!",
     UNKNOWN_ACTION: "Azione sconosciuta!",
-    DB_ERROR: "Errore nel database!"
+    UPLOAD_FAILED: "Caricamento fallito!",
+    INVALID_DIRECTORY: "Cartella non valida!",
+    DB_ERROR: "Errore nel database!",
+    FILE_NOT_FOUND: "File non trovato!",
+    INVALID_USERNAME: "Nome utente non valido!",
+    INVALID_PASSWORD: "Password non valida!"
 }
 
 // string translation
@@ -69,7 +85,11 @@ const locale_strings_en = {
     LOGIN_BUTTON: "Login",
     REGISTER_BUTTON: "Register",
     WELCOME_TITLE: "Welcome",
-    TRANSFERS_FILE_TITLE: "Transfers"
+    TRANSFERS_FILE_TITLE: "Transfers",
+    MIN_LENGTH: "Min length",
+    MAX_LENGTH: "Max length",
+    NEW_PASS_INVALID: "New password invalid!",
+    NEW_PASS_DIFFERS: "Rewrite correctly the new password"
 }
 
 const locale_strings_it = {
@@ -94,7 +114,11 @@ const locale_strings_it = {
     LOGIN_BUTTON: "Accedi",
     REGISTER_BUTTON: "Registrati",
     WELCOME_TITLE: "Benvenuto",
-    TRANSFERS_FILE_TITLE: "Trasferimenti"
+    TRANSFERS_FILE_TITLE: "Trasferimenti",
+    MIN_LENGTH: "Lunghezza minima",
+    MAX_LENGTH: "Lunghezza massima",
+    NEW_PASS_INVALID: "Nuova password non valida!",
+    NEW_PASS_DIFFERS: "Riscrivi correttamente la nuova password"
 }
 
 var languages = {

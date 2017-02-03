@@ -30,18 +30,37 @@ function register(){
     var password = getFormValue('registerpass');
     var password2 = getFormValue('registerpass2');
 
+    // If the username is not available shake username field
     if ($('registeruser').hasClassName('errorField')){
         $('registeruser').shake();
         return;
     }
 
     if (username && password && password2){
+        // check user length
+        if ( !isValueInRange(username, 4, 20, 'cinfo', getErrorString('INVALID_USERNAME')) ){
+            $('registeruser').shake();
+            return;
+        }
+
+        // check new password length
+        if ( !isValueInRange(password, 8, 20, 'cinfo', getString('NEW_PASS_INVALID')) ){
+            $('registerpass').setValue("");
+            $('registerpass').shake();
+            $('registerpass2').setValue("");
+            $('registerpass2').shake();
+            return;
+        }
+
+        // if new passwords are equals send the register request
         if (password == password2){
             sendAjax(USER_FUNCTIONS+'register.php', registerCallback, {
                 username: username,
                 password: password
             });
         } else {
+            // show error message
+            info('cinfo', getString('NEW_PASS_DIFFERS') , 4);
             $('registerpass2').setValue("");
             $('registerpass2').shake();
         }
@@ -79,9 +98,26 @@ function registerCallback(result){
         return;
     }
     switch (result.error){
+        // registration successful
         case API_NO_ERROR:
-            // registration successful
             openIndex();
+            break;
+        // submitted password is invalid
+        case API_INVALID_PASSWORD:
+            $('registerpass').setValue("");
+            $('registerpass').shake();
+            $('registerpass2').setValue("");
+            $('registerpass2').shake();
+            info('cinfo', getErrorString(result.error) + '<br>' +
+                getString('MIN_LENGTH') + ': ' + result.min + '<br>' +
+                getString('MAX_LENGTH') + ': ' + result.max, 4);
+            break;
+        // submitted username is invalid
+        case API_INVALID_USERNAME:
+            $('registeruser').shake();
+            info('cinfo', getErrorString(result.error) + '<br>' +
+                getString('MIN_LENGTH') + ': ' + result.min + '<br>' +
+                getString('MAX_LENGTH') + ': ' + result.max, 4);
             break;
         default:
             info('cinfo', getErrorString(result.error), 3);

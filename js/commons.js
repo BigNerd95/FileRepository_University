@@ -9,6 +9,19 @@ function getFormValue(id){
     return value;
 }
 
+function isValueInRange(value, min, max, id_warning, inital_message){
+    if (value.length < min || value.length > max) {
+        if (id_warning && inital_message){
+            info(id_warning, inital_message + '<br>' +
+                getString('MIN_LENGTH') + ': ' + min + '<br>' +
+                getString('MAX_LENGTH') + ': ' + max, 4);
+        }
+        return false;
+    } else {
+        return true;
+    }
+}
+
 // set info message on an element and remove it after specified seconds,
 // if seconds is udefined, the message will be permament
 function info(id, message, seconds){

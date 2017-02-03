@@ -22,6 +22,8 @@
 	const API_INVALID_DIRECTORY = "INVALID_DIRECTORY";
 	const API_DB_ERROR = "DB_ERROR";
 	const API_FILE_NOT_FOUND = "FILE_NOT_FOUND";
+	const API_INVALID_USERNAME = "INVALID_USERNAME";
+	const API_INVALID_PASSWORD = "INVALID_PASSWORD";
 
 	function login($userid, $username) {
 		$_SESSION['userid'] = $userid;
@@ -36,6 +38,18 @@
 
 	function isUserLoggedin() {
 		return (isset($_SESSION['userid']) && isset($_SESSION['username']));
+	}
+
+	function checkUserValidity($username){
+		if (strlen($username) < 4 || strlen($username) > 20){
+			json_response(API_INVALID_USERNAME, ['min' => 4, 'max' => 20]);
+		}
+	}
+
+	function checkPassValidity($password){
+		if (strlen($password) < 8 || strlen($password) > 20){
+			json_response(API_INVALID_PASSWORD, ['min' => 8, 'max' => 20]);
+		}
 	}
 
 	function getParam($param){

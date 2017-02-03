@@ -41,15 +41,15 @@
 
 			<div id="cbody">
 				<form id="login">
-					<input type="text" placeholder="Username" maxlength="20" class="rounded" id="loginuser" required>
-					<input type="password" placeholder="Password" maxlength="20" class="rounded" id="loginpass" required>
+					<input type="text" placeholder="Username" minlength="4" maxlength="20" class="rounded" id="loginuser" required>
+					<input type="password" placeholder="Password" minlength="8" maxlength="20" class="rounded" id="loginpass" required>
 					<input type="submit" class="rounded" id="loginsbmt" value="Login">
 				</form>
 
 				<form id="register" >
-					<input type="text" placeholder="Username" maxlength="20" class="rounded" id="registeruser" required>
-					<input type="password" placeholder="Password" maxlength="20" class="rounded" id="registerpass" required>
-					<input type="password" placeholder="Retype password" maxlength="20" class="rounded" id="registerpass2" required>
+					<input type="text" placeholder="Username" minlength="4" maxlength="20" class="rounded" id="registeruser" required>
+					<input type="password" placeholder="Password" minlength="8" maxlength="20" class="rounded" id="registerpass" required>
+					<input type="password" placeholder="Retype password" minlength="8" maxlength="20" class="rounded" id="registerpass2" required>
 					<input type="submit" class="rounded" id="registersbmt" value="Register">
 				</form>
 

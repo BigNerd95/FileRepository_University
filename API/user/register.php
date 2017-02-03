@@ -30,7 +30,6 @@
 		login($userid, $username);
 	}
 
-
 	# --- Main starts here ---
 
 	session_start();
@@ -42,7 +41,9 @@
 	$username = getParam('username');
 	$password = getParam('password');
 
-	# Register a new account
+	checkUserValidity($username);
+	checkPassValidity($password);
+
 	createAccount($username, $password);
 
 	json_response(API_NO_ERROR);

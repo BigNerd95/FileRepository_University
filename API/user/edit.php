@@ -43,6 +43,7 @@
 	switch ($action) {
 		case 'editPassword':
 			$newPassword = getParam('newPassword');
+			checkPassValidity($newPassword);
 			editPassword($newPassword);
 			break;
 

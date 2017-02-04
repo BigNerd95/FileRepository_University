@@ -168,26 +168,25 @@ function uploadFile(file){
     req.open("post", FILE_FUNCTIONS+'send.php');
 
 
-    /*
-    <li><span>file.txt</span><div class="meter"><span style="width: 25%"></span></div></li>
-    */
-
+    // create the new upload progress bar for this file
     var item = new Element('li');
     var label = new Element('div', {
         'class': 'name'
     });
     var labeltext = new Element('span');
-    labeltext.update(file.name.escapeHTML()); // insert?
+    labeltext.update(file.name.escapeHTML()); // set the file name
     label.insert(labeltext);
     var progress = new Element('div', {
         'class': 'meter'
     });
+    // init the progress bar
     var bar = new Element('span');
     bar.setStyle({
         'width': '0%'
     });
     progress.insert(bar);
 
+    // create the cancel button
     var button = new Element('div', {
         'class': 'button_upload'
     });
@@ -262,5 +261,6 @@ function uploadFile(file){
         }
     }
 
+    // send the ajax request
     req.send(data);
 }

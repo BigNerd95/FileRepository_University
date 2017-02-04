@@ -6,6 +6,7 @@
 
 	require_once('../CommLib.php');
 
+	// delete the file with the given name of the logged user
 	function deleteFile($name){
 		$userdir = $_SESSION['userid'];
 		$dir_path = PROJECT_BASE_DIR.'/'.REPOSITORY_DIR.'/'.$userdir.'/';
@@ -29,8 +30,6 @@
 	switch ($action) {
 		/*
 		case 'rename':
-			$newPassword = getParam('newPassword');
-			editPassword($newPassword);
 			break;
 		*/
 		case 'delete':

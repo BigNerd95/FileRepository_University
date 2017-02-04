@@ -94,6 +94,7 @@ const locale_strings_it = {
     NEW_PASS_DIFFERS: "Riscrivi correttamente la nuova password"
 }
 
+// lagnuages list
 var languages = {
     'it': {
         error: error_strings_it,
@@ -105,7 +106,7 @@ var languages = {
     }
 };
 
-// default english language
+// default language: english
 window.error_strings = error_strings_en;
 window.locale_strings = locale_strings_en;
 

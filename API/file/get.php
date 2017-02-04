@@ -12,6 +12,7 @@
 		json_response(API_NOT_LOGGEDIN);
 
 	$filename = getParam('filename');
+	// force file download if the file exists
 	if (check_file($filename)){
 		header("Content-Disposition: attachment; filename=$filename");
 		header("Content-Description: File Transfer");

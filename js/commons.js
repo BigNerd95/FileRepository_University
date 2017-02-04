@@ -9,6 +9,8 @@ function getFormValue(id){
     return value;
 }
 
+// check if a value is in a range
+// optionally an element id and a message can be passed to alert the user
 function isValueInRange(value, min, max, id_warning, inital_message){
     if (value.length < min || value.length > max) {
         if (id_warning && inital_message){

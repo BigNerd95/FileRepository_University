@@ -1,5 +1,5 @@
 <?php
-
+	/*
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
@@ -8,7 +8,7 @@
 	ini_set('post_max_size', '3G');
 	ini_set('max_input_time', 300);
 	ini_set('max_execution_time', 300);
-
+	*/
 	//print(ini_get('upload_max_filesize'));
 
 	# Include Communication Library

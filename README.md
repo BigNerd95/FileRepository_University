@@ -2,4 +2,4 @@
 
 Progetto TWeb  
 
-[Relazione](https://gitlab2.educ.di.unito.it/st148379/FileRepository/wikis/home)
+[Relazione](https://github.com/BigNerd95/FileRepository_University/wiki)
